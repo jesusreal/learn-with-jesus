@@ -116,6 +116,13 @@ button {
   border: none;
 }
 
+button.delete-word-btn {
+  float: right;
+  background-color: #60210e;
+  padding: 0.5em 0.5em;
+  width: auto;
+}
+
 button:focus {
   border: none;
   cursor: none;

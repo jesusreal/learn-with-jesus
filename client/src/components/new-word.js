@@ -45,7 +45,11 @@ export default class NewWordComponent extends React.Component {
       {type},
       this.state[type]
     );
-    jQuery.post(`${constants.SERVER_URL}/word`, JSON.stringify(wordData));
+    jQuery.post(`${constants.SERVER_URL}/word`, JSON.stringify(wordData), (word) => {
+      word = JSON.parse(word);
+      console.log('word', word.id, 'added');
+      this.props.addOrRemoveWord(word, 'add');
+    });
   }
 
   getFormData() {
@@ -83,7 +87,6 @@ export default class NewWordComponent extends React.Component {
           </div>
           {formData.map((formElem, i) =>
             <div className="word-param-input" key={'word-tipe-form-elem' + i}>
-
               <label for={formElem[0]}>
                 {formElem[1]}
               </label>

@@ -41,11 +41,24 @@ app.post('/word', (request, response) => {
 
   request.on('end', () => {
     let userId = 1;
+    if (requestData.action === 'delete') {
+      fs.readFile('user1.json', (error, contents) => {
+        let fileData = JSON.parse(contents.toString());
+        listKey = requestData.listKey;
+        fileData[listKey] = fileData[listKey].filter((word) => word.id !== requestData.wordId);
+        fs.writeFile('user1.json', JSON.stringify(fileData), () => {
+          response.end(`Word successfully deleted for user ${userId}`);
+        });
+      });
+      return;
+    }
+
     fs.readFile('user1.json', (error, contents) => {
       let fileData = JSON.parse(contents.toString());
+      requestData.id = fileData.totalWords = fileData.totalWords + 1;
       fileData.daily = fileData.daily.concat([requestData]);
       fs.writeFile('user1.json', JSON.stringify(fileData), () => {
-        response.end(`Word successfully saved for user ${userId}`);
+        response.end(JSON.stringify(requestData));
       });
     });
   });

@@ -2,6 +2,7 @@ import React from 'react';
 import jQuery from 'jquery';
 import * as constants from './../constants';
 
+import NewWordComponent from './new-word';
 import WordCardComponent from './word-card-component';
 
 
@@ -16,8 +17,23 @@ export default class WordsViewComponent extends React.Component {
     };
 
     this.showNewWords = this.showNewWords.bind(this);
+    this.addOrRemoveWord = this.addOrRemoveWord.bind(this);
   }
 
+  addOrRemoveWord(targetWord, action) {
+    // TODO: daily, weekly and monthly should be in a constants module
+    // TODO: Also actions for words "add" and "remove"
+    if (action === 'add' && this.state.listVisible && this.state.lastListDisplayed === 'daily') {
+      let newWords = this.state.words.concat(targetWord);
+      this.setState({words: newWords});
+    }
+
+    if (action === 'remove') {
+      let currentWords = this.state.words;
+      let newWords = currentWords.filter( (word) => word.id !== targetWord.id );
+      this.setState({words: newWords});
+    }
+  }
 
   showNewWords(event) {
     let wordsList = event.target.id.split('-')[0];
@@ -51,9 +67,10 @@ export default class WordsViewComponent extends React.Component {
         </div>
         <div id="words-list" className={'block ' + ((this.state.listVisible) ? 'visible' : '')}>
           {this.state.words.map((word, index) =>
-              <WordCardComponent key={index} word={word}/>
+              <WordCardComponent key={index} word={word} addOrRemoveWord={this.addOrRemoveWord} listKey={this.state.lastListDisplayed}/>
           )}
         </div>
+        <NewWordComponent addOrRemoveWord={this.addOrRemoveWord}/>
       </div>
     );
   }

@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 
 // import ReactDOMServer from 'react-dom/server'; //for server-side rendering
 
-import NewWordComponent from './components/new-word';
 import WordsViewComponent from './components/words-view-component';
 
 export class Page extends React.Component {
@@ -13,7 +12,6 @@ export class Page extends React.Component {
     return (
       <div>
         <WordsViewComponent/>
-        <NewWordComponent/>
       </div>
     );
   }
