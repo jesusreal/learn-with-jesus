@@ -5,7 +5,7 @@ import NewWords from './new-words';
 describe('add(), ', function() {
   it('adds a word to persistent data', () => {
     var word = {
-      look: 'at me',
+      look: 'at medasf',
       'i look': 'like a word'
     };
     NewWords.add(word);

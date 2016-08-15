@@ -3,9 +3,8 @@ import jQuery from 'jquery';
 import * as constants from './../constants';
 
 export default class WordCardComponent extends React.Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     this.deleteWord = this.deleteWord.bind(this);
   }
 
@@ -14,7 +13,7 @@ export default class WordCardComponent extends React.Component {
     let listKey = this.props.listKey;
     let requestUrl = `${constants.SERVER_URL}/word`;
     jQuery.post(requestUrl, JSON.stringify({wordId: word.id, listKey, action: 'delete'}), () => {
-      console.log('word', word.id, 'removed');
+      console.info('word', word.id, 'removed');
       this.props.addOrRemoveWord(word, 'remove');
     });
   }
@@ -36,4 +35,9 @@ export default class WordCardComponent extends React.Component {
   }
 }
 
+WordCardComponent.propTypes = {
+  addOrRemoveWord: React.PropTypes.func,
+  word: React.PropTypes.object,
+  listKey: React.PropTypes.string
+};
 

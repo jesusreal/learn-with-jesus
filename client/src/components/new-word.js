@@ -4,8 +4,8 @@ import jQuery from 'jquery';
 import * as constants from './../constants';
 
 export default class NewWordComponent extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.forms = {
       // Field name and text. Think about translations
       name: [
@@ -28,14 +28,18 @@ export default class NewWordComponent extends React.Component {
     this.state = {
       type: 'name'
     };
-    Object.keys(this.forms).forEach(function(key) {
-      this.state[key] = {};
-    }, this);
+
 
     this.addWord = this.addWord.bind(this);
     this.getFormData = this.getFormData.bind(this);
     this.onSelectionChange = this.onSelectionChange.bind(this);
     this.updateField = this.updateField.bind(this);
+  }
+
+  componentDidMount() {
+    Object.keys(this.forms).forEach(function(key) {
+      this.setState({[key]: {}});
+    }, this);
   }
 
   addWord(event) {
@@ -47,7 +51,7 @@ export default class NewWordComponent extends React.Component {
     );
     jQuery.post(`${constants.SERVER_URL}/word`, JSON.stringify(wordData), (word) => {
       word = JSON.parse(word);
-      console.log('word', word.id, 'added');
+      console.info('word', word.id, 'added');
       this.props.addOrRemoveWord(word, 'add');
     });
   }
@@ -78,8 +82,8 @@ export default class NewWordComponent extends React.Component {
       <div id="add-word-forms" className="block">
         <form name={this.props.type + '-form'}>
           <div id="add-word-menu" className="block">
-            <h6>Add a new word: </h6>
-            <select onChange={this.onSelectionChange} autofocus>
+            <h6>Add a new word:</h6>
+            <select autoFocus="autofocus" onChange={this.onSelectionChange}>
               <option value="name">Name</option>
               <option value="verb">Verb</option>
               <option value="other">Other</option>
@@ -87,13 +91,13 @@ export default class NewWordComponent extends React.Component {
           </div>
           {formData.map((formElem, i) =>
             <div className="word-param-input" key={'word-tipe-form-elem' + i}>
-              <label for={formElem[0]}>
+              <label htmlFor={formElem[0]}>
                 {formElem[1]}
               </label>
               <input name={formElem[0]} onChange={this.updateField} type="text" value={formElem[2]}/>
             </div>
           )}
-          <button type="submit" id="add-word-btn" onClick={this.addWord} autofocus="autofocus">
+          <button type="submit" id="add-word-btn" onClick={this.addWord} autoFocus="autofocus">
             Add word
           </button>
         </form>
@@ -101,3 +105,8 @@ export default class NewWordComponent extends React.Component {
     );
   }
 }
+
+NewWordComponent.propTypes = {
+  addOrRemoveWord: React.PropTypes.func,
+  type: React.PropTypes.string
+};

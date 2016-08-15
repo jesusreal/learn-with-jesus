@@ -1,0 +1,12 @@
+{
+ "files": [ "./client/dist/index.js" ],
+ "injectChanges": true,
+ "logSnippet": true,
+ "logFileChanges": true,
+ "logLevel": "silent",
+ "logConnections": false,
+ "server": { "baseDir": "./client/dist" },
+ "watchOptions": {
+    "ignoreInitial": true
+ }
+}

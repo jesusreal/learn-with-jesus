@@ -8,7 +8,6 @@ export default {
 
   getAll() {
     // return JSON.parse(localStorage.words);
-    console.log('this.words', words);
     return words;
   }
 };

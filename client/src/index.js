@@ -18,18 +18,18 @@ export class Page extends React.Component {
 }
 
 setTimeout(function() {
-  // console.log(ReactDOMServer.renderToString(<Page/>)); // for server-side rendering
+  // console.info(ReactDOMServer.renderToString(<Page/>)); // for server-side rendering
   ReactDOM.render(<Page/>, document.getElementById('app'));
 }, 80);
 
 // var ComponentFactory = React.createFactory(Page);
-// console.log('ComponentFactory ' , ComponentFactory());
+// console.info('ComponentFactory ' , ComponentFactory());
 // express.Router().get('/react', function(req, res, next) {
-//   // console.log(ReactDOMServer.renderToString(<Page/>)); // for server-side rendering
+//   // console.info(ReactDOMServer.renderToString(<Page/>)); // for server-side rendering
 //   //   ReactDOM.render(<Page/>, document.getElementById('app'));
 
 //   var markup = ReactDOMServer.renderToString(ComponentFactory());
-//   console.log('markup ' , markup);
+//   console.info('markup ' , markup);
 //   res.send(markup);
 // });
 

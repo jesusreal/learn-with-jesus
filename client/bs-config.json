@@ -1,5 +1,0 @@
-{
- "injectChanges": false,
- "files": [ "./dist/*.{js}" ],
- "server": { "baseDir": "./dist" }
-}
