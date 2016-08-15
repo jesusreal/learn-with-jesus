@@ -1,23 +1,23 @@
 module.exports = {
   parser: 'babel-eslint',
   plugins: ['react'],
-  extends: 'eslint',
-  // extends: ['eslint', "plugin:react/recommended"],
+  // extends: 'eslint:recommended',
+  extends: ['eslint:recommended', "plugin:react/recommended"],
+  env: {
+    browser: true,
+    node: true,
+    mocha: true
+  },
   globals: {
-    "beforeEach": false,
-    "console": false,
-    "describe": false,
-    "document": false,
-    "it": false,
-    "localStorage": false,
-    "require": false,
-    "setTimeout": false
+    "module": false,
+    "require": false
   },
   rules: {
     "require-jsdoc": 0,
     "comma-dangle": 0,
-    "indent": [2, 2],
-    "quotes": [2, "single"],
+    "indent": [1, 2],
+    "no-console": [1, { "allow": ["info"] }],
+    "quotes": [1, "single"],
     "react/jsx-uses-vars": [2]
-  },
+  }
 };
