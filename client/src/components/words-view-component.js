@@ -41,10 +41,7 @@ export default class WordsViewComponent extends React.Component {
     if (!this.state.listVisible || this.state.lastListDisplayed !== wordsList) {
       let requestUrl = `${constants.SERVER_URL}/words`;
       this.setState({words: []});
-      jQuery.get(requestUrl, {list: wordsList}, (data) => {
-        data = data.split(constants.SEPARATOR);
-        data = data.map( (line) => JSON.parse(line) );
-        this.setState({words: data});
+      jQuery.get(requestUrl, {list: wordsList}, (data) => {        this.setState({words: JSON.parse(data)});
       });
     }
 
