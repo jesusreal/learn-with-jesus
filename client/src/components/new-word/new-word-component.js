@@ -1,7 +1,7 @@
 import React from 'react';
 import jQuery from 'jquery';
 // import newWords from './../new-words';
-import * as constants from './../constants';
+import * as constants from './../../constants';
 
 export default class NewWordComponent extends React.Component {
   constructor(props) {
@@ -29,7 +29,6 @@ export default class NewWordComponent extends React.Component {
       type: 'name'
     };
 
-
     this.addWord = this.addWord.bind(this);
     this.getFormData = this.getFormData.bind(this);
     this.onSelectionChange = this.onSelectionChange.bind(this);
@@ -37,9 +36,9 @@ export default class NewWordComponent extends React.Component {
   }
 
   componentDidMount() {
-    Object.keys(this.forms).forEach(function(key) {
+    Object.keys(this.forms).forEach((key) => {
       this.setState({[key]: {}});
-    }, this);
+    });
   }
 
   addWord(event) {
@@ -52,7 +51,7 @@ export default class NewWordComponent extends React.Component {
     jQuery.post(`${constants.SERVER_URL}/word`, JSON.stringify(wordData), (word) => {
       word = JSON.parse(word);
       console.info('word', word.id, 'added');
-      this.props.addOrRemoveWord(word, 'add');
+      this.props.addOrRemoveWordFn(word, 'add');
     });
   }
 
@@ -90,7 +89,7 @@ export default class NewWordComponent extends React.Component {
             </select>
           </div>
           {formData.map((formElem, i) =>
-            <div className="word-param-input" key={'word-tipe-form-elem' + i}>
+            <div className="word-param-input" key={'word-type-form-elem' + i}>
               <label htmlFor={formElem[0]}>
                 {formElem[1]}
               </label>
@@ -107,6 +106,6 @@ export default class NewWordComponent extends React.Component {
 }
 
 NewWordComponent.propTypes = {
-  addOrRemoveWord: React.PropTypes.func,
+  addOrRemoveWordFn: React.PropTypes.func,
   type: React.PropTypes.string
 };

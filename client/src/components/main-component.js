@@ -2,11 +2,11 @@ import React from 'react';
 import jQuery from 'jquery';
 import * as constants from './../constants';
 
-import NewWordComponent from './new-word';
-import WordCardComponent from './word-card-component';
+import NewWordComponent from './new-word/new-word-component';
+import WordCardComponent from './word-card/word-card-component';
 
 
-export default class WordsViewComponent extends React.Component {
+export default class MainComponent extends React.Component {
   constructor() {
     super();
 
@@ -17,10 +17,10 @@ export default class WordsViewComponent extends React.Component {
     };
 
     this.showNewWords = this.showNewWords.bind(this);
-    this.addOrRemoveWord = this.addOrRemoveWord.bind(this);
+    this.addOrRemoveWordFn = this.addOrRemoveWordFn.bind(this);
   }
 
-  addOrRemoveWord(targetWord, action) {
+  addOrRemoveWordFn(targetWord, action) {
     // TODO: daily, weekly and monthly should be in a constants module
     // TODO: Also actions for words "add" and "remove"
     if (action === 'add' && this.state.listVisible && this.state.lastListDisplayed === 'daily') {
@@ -41,7 +41,8 @@ export default class WordsViewComponent extends React.Component {
     if (!this.state.listVisible || this.state.lastListDisplayed !== wordsList) {
       let requestUrl = `${constants.SERVER_URL}/words`;
       this.setState({words: []});
-      jQuery.get(requestUrl, {list: wordsList}, (data) => {        this.setState({words: JSON.parse(data)});
+      jQuery.get(requestUrl, {list: wordsList}, (data) => {
+        this.setState({words: JSON.parse(data)});
       });
     }
 
@@ -64,10 +65,10 @@ export default class WordsViewComponent extends React.Component {
         </div>
         <div id="words-list" className={'block ' + ((this.state.listVisible) ? 'visible' : '')}>
           {this.state.words.map((word, index) =>
-              <WordCardComponent key={index} word={word} addOrRemoveWord={this.addOrRemoveWord} listKey={this.state.lastListDisplayed}/>
+              <WordCardComponent key={index} word={word} addOrRemoveWordFn={this.addOrRemoveWordFn} listKey={this.state.lastListDisplayed}/>
           )}
         </div>
-        <NewWordComponent addOrRemoveWord={this.addOrRemoveWord}/>
+        <NewWordComponent addOrRemoveWordFn={this.addOrRemoveWordFn}/>
       </div>
     );
   }

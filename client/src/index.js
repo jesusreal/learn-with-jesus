@@ -5,13 +5,13 @@ import ReactDOM from 'react-dom';
 
 // import ReactDOMServer from 'react-dom/server'; //for server-side rendering
 
-import WordsViewComponent from './components/words-view-component';
+import MainComponent from './components/main-component';
 
 export class Page extends React.Component {
   render() {
     return (
       <div>
-        <WordsViewComponent/>
+        <MainComponent/>
       </div>
     );
   }

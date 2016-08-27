@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-import NewWord from './new-word';
+import NewWord from './new-word-component';
 
 describe( 'test setup ', () => {
   it('works', () => assert(true));
