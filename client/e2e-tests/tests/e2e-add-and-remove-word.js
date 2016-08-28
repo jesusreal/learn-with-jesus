@@ -19,7 +19,7 @@ module.exports = {
   // featureduredProducts.click('@itemNext')
   //     .assert.visible('@itemPrev')
 
-  //   client.end();
+    client.end();
   },
 
 

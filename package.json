@@ -14,7 +14,8 @@
     "build:watch": "npm run build; chokidar 'client/src' -c 'npm run build'",
     "start": "concurrently \"npm run build:watch\" \"'npm run dev'\" \"npm run backend\" ",
     "test": "mocha client/src --recursive --reporter min --compilers js:babel-register --colors",
-    "test:watch": "npm test -- -w"
+    "test:watch": "npm test -- -w",
+    "test-e2e": "./client/e2e-tests/e2e-tests-runner.js -a e2e"
   },
   "author": "Jesús Real Serrano <jesus.real@outlook.com>",
   "license": "MIT",
@@ -40,7 +41,8 @@
     "mocha": "^2.4.5",
     "nightwatch": "^0.9.5",
     "react": "^15.0.x",
-    "react-dom": "^15.0.x"
+    "react-dom": "^15.0.x",
+    "selenium-standalone": "5.0.0"
   },
   "dependencies": {
     "jquery": "^3.0.0",

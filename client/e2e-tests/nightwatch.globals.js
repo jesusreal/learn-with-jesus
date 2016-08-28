@@ -32,7 +32,8 @@ let nightwatchSettings = {
   afterEach: function(done) {
     // console.log("GLOBAL afterEach");
     done();
-  }
+  },
+  appUrl: "http://localhost:3000"
 };
 
 module.exports = Object.assign({}, nightwatchSettings);
