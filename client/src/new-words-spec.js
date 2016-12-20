@@ -11,4 +11,11 @@ describe('add(), ', function() {
     NewWords.add(word);
     assert.deepStrictEqual(NewWords.getAll(), [word], 'new word added');
   });
-});
+})
+
+
+
+
+
+
+

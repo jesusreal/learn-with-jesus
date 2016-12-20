@@ -3,7 +3,7 @@ import jQuery from 'jquery';
 import * as constants from './../constants';
 
 import NewWordComponent from './new-word/new-word-component';
-import WordCardComponent from './word-card/word-card-component';
+import WordCardComponent from './word-card/word-card-component'
 
 
 export default class MainComponent extends React.Component {
@@ -20,6 +20,7 @@ export default class MainComponent extends React.Component {
     this.addOrRemoveWordFn = this.addOrRemoveWordFn.bind(this);
   }
 
+  // ToDo: Should be onWordAdded and onWordRemoved
   addOrRemoveWordFn(targetWord, action) {
     // TODO: daily, weekly and monthly should be in a constants module
     // TODO: Also actions for words "add" and "remove"

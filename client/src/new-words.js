@@ -1,5 +1,6 @@
 let words = [];
 
+
 export default {
   add(word) {
     // localStorage.words = JSON.stringify(this.get().push(word));

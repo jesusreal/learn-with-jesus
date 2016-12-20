@@ -1,7 +1,7 @@
 let express = require('express');
 let fs = require('fs');
 
-const SERVER_PORT = 8080;
+const SERVER_PORT = 3333;
 const SERVER_URL = '127.0.0.1';
 const HEADER_OPTIONS = {
   'Access-Control-Allow-Origin': '*',

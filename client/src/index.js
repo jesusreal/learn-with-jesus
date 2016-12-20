@@ -19,7 +19,9 @@ export class Page extends React.Component {
 
 setTimeout(function() {
   // console.info(ReactDOMServer.renderToString(<Page/>)); // for server-side rendering
-  ReactDOM.render(<Page/>, document.getElementById('app'));
+  if(typeof window !== 'undefined') {
+    ReactDOM.render(<Page/>, document.getElementById('app'));
+  }
 }, 80);
 
 // var ComponentFactory = React.createFactory(Page);

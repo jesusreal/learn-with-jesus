@@ -5,17 +5,18 @@
   "main": "index.js",
   "scripts": {
     "backend": "node server/index.js",
-    "dev": "lite-server",
+    "dev": "webpack-dev-server",
     "env": "env",
     "lint": "eslint --format table --color client/src/ server; exit 0",
-    "build:app": "echo > client/dist/index-temp.js; browserify client/src/index.js -t=babelify -o=client/dist/index-temp.js; mv client/dist/index-temp.js client/dist/index.js",
-    "build:html": " cp -R client/src/css client/dist; cp -R client/src/img client/dist; cp client/src/index.html client/dist;",
-    "build": "mkdir -p client/dist; npm run lint; npm test; npm run build:html && npm run build:app",
-    "build:watch": "npm run build; chokidar 'client/src' -c 'npm run build'",
-    "start": "concurrently \"npm run build:watch\" \"'npm run dev'\" \"npm run backend\" ",
-    "test": "mocha client/src --recursive --reporter min --compilers js:babel-register --colors",
+    "build:html": "cp client/src/index.html client/dist;",
+    "build:css": "cp -R client/src/css client/dist",
+    "build:img": "cp -R client/src/img client/dist;",
+    "build": "npm run build:html; npm run build:css; npm run build:img",
+    "build:watch": "npm run build; chokidar 'client/src/img' 'client/src/css' 'client/src/index.html' -c 'npm run build'",
+    "start": "mkdir -p client/dist && concurrently \"npm run build:watch\" \"'npm run dev'\" \"npm run backend\" ",
+    "test": "mocha client/src --recursive --reporter list --compilers js:babel-register --colors",
     "test:watch": "npm test -- -w",
-    "test-e2e": "./client/e2e-tests/e2e-tests-runner.js -a e2e"
+    "test-e2e": "'./node_modules/nightwatch/bin/nightwatch' --config './client/e2e-tests/nightwatch.config.json' --tag e2e"
   },
   "author": "Jesús Real Serrano <jesus.real@outlook.com>",
   "license": "MIT",
@@ -23,8 +24,10 @@
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-eslint": "^6.0.0",
+    "babel-loader": "^6.0.0",
     "babel-plugin-transform-react-jsx": "^6.5.2",
     "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.0.14",
     "babel-register": "^6.5.2",
     "babelify": "^7.2.0",
     "browser-sync": "^2.14.0",
@@ -39,13 +42,17 @@
     "hamjest": "^2.13.0",
     "lite-server": "^2.2.2",
     "mocha": "^2.4.5",
-    "nightwatch": "^0.9.5",
-    "react": "^15.0.x",
-    "react-dom": "^15.0.x",
-    "selenium-standalone": "5.0.0"
+    "chromedriver": "2.25.1",
+    "nightwatch": "^0.x",
+    "selenium-server-standalone-jar": "3.0.1",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-validator": "^2.2.9"
   },
   "dependencies": {
     "jquery": "^3.0.0",
-    "node-fetch": "^1.3.3"
+    "node-fetch": "^1.3.3",
+    "react": "^15.0.x",
+    "react-dom": "^15.0.x"
   }
 }

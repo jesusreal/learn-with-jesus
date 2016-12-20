@@ -18,6 +18,10 @@ body {
   padding: 1.5em 0;
 }
 
+label {
+  display: block;
+}
+
 input {
   border-radius: 0.3em;
   width: 10em;

@@ -9,19 +9,22 @@ export default class NewWordComponent extends React.Component {
     this.forms = {
       // Field name and text. Think about translations
       name: [
-        ['singular', 'Singular'],
-        ['plural', 'Plural'],
-        ['translation', 'Translation']
+        ['singular', 'Singular', 'text'],
+        ['genre', 'Genre', 'select' ,
+            <select><option value="der">Der</option><option value="die">Die</option> <option value="das">Das</option></select>
+        ],
+        ['plural', 'Plural', 'text'],
+        ['translation', 'Translation', 'text']
       ],
       verb: [
-        ['infinitive', 'Infinitive'],
-        ['past', 'Past'],
-        ['perfect', 'Perfect'],
-        ['translation', 'Translation']
+        ['infinitive', 'Infinitive', 'text'],
+        ['past', 'Past', 'text'],
+        ['perfect', 'Perfect', 'text'],
+        ['translation', 'Translation', 'text']
       ],
       other: [
-        ['word', 'Word'],
-        ['translation', 'Translation']
+        ['word', 'Word', 'text'],
+        ['translation', 'Translation', 'text']
       ]
     };
 
@@ -36,18 +39,14 @@ export default class NewWordComponent extends React.Component {
   }
 
   componentDidMount() {
-    Object.keys(this.forms).forEach((key) => {
-      this.setState({[key]: {}});
+    Object.keys(this.forms).forEach((type) => {
+      this.setState({[type]: {type}});
     });
   }
 
   addWord(event) {
     event.preventDefault();
-    const type = this.state.type;
-    const wordData = Object.assign(
-      {type},
-      this.state[type]
-    );
+    const wordData = this.state[this.state.type];
     jQuery.post(`${constants.SERVER_URL}/word`, JSON.stringify(wordData), (word) => {
       word = JSON.parse(word);
       console.info('word', word.id, 'added');
@@ -93,7 +92,16 @@ export default class NewWordComponent extends React.Component {
               <label htmlFor={formElem[0]}>
                 {formElem[1]}
               </label>
-              <input name={formElem[0]} onChange={this.updateField} type="text" value={formElem[2]}/>
+              {(() => {
+                switch (formElem[2]) {
+                  case "select":
+                    return formElem[3];
+                    break;
+                  default:
+                    return <input name={formElem[0]} onChange={this.updateField} type={formElem[2]}/>
+;
+                }
+              })()}
             </div>
           )}
           <button type="submit" id="add-word-btn" onClick={this.addWord} autoFocus="autofocus">

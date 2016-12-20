@@ -1,39 +1,36 @@
 {
-    "src_folders" : [ "client/e2e-tests/tests/"],
-    "output_folder" : "client/e2e-tests/reports/",
-    "custom_commands_path" : "client/e2e-tests/commands/",
-    "custom_assertions_path" : "client/e2e-tests/assertions/",
-    "page_objects_path" : "client/e2e-tests/pageobjects/",
-    "globals_path" : "client/e2e-tests/nightwatch.globals.js/",
+    "src_folders": [ "client/e2e-tests/tests/"],
+    "output_folder": "client/e2e-tests/reports/",
+    "custom_commands_path": "client/e2e-tests/commands/",
+    "custom_assertions_path": "client/e2e-tests/assertions/",
+    "page_objects_path": "client/e2e-tests/pageobjects/",
+    "globals_path": "client/e2e-tests/nightwatch.globals.js/",
 
     "end_session_on_fail": "true",
     "skip_testcases_on_fail": "true",
 
-    "test_settings" : {
-        "default" : {
+    "test_settings": {
+        "default": {
             "desiredCapabilities": {
                 "browserName": "chrome",
                 "javascriptEnabled": true,
                 "acceptSslCerts": true
             },
-            "launch_url" : "http://127.0.0.1",
-            "screenshots" : {
-                "enabled" : false,
-                "on_failure" : true,
-                "on_error" : false,
-                "path" : "test/e2e/error-screenshots"
+            "launch_url": "http://127.0.0.1",
+            "screenshots": {
+                "enabled": false,
+                "on_failure": true,
+                "on_error": false,
+                "path": ""
             },
-            "selenium_port"  : 4444,
-            "selenium_host"  : "localhost",
-            "selenium" : {
-                "start_process" : true,
-                "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/2.53.0-server.jar",
-                "log_path" : "",
-                "host" : "127.0.0.1",
-                "port" : 4444,
-                "cli_args" : {
-                    "webdriver.chrome.driver" : "node_modules/selenium-standalone/.selenium/chromedriver/2.21-x64-chromedriver",
-                    "webdriver.ie.driver" : ""
+            "selenium": {
+                "start_process": true,
+                "server_path": "./node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-3.0.1.jar",
+                "log_path": "",
+                "host": "127.0.0.1",
+                "port": 4444,
+                "cli_args": {
+                    "webdriver.chrome.driver": "./node_modules/chromedriver/bin/chromedriver"
                 }
             },
             "silent": true
