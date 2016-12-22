@@ -50,7 +50,12 @@ const config = {
 
     module: {
         loaders: [
-            {test: /\.js$/, loader: "babel", query: {presets:['react', 'es2015']}},
+            {
+                test: /\.js$/,
+                loader: "babel",
+                query: {presets:['react', 'es2015']},
+                include: [PATHS.app]
+            },
             {test: /\.json$/, loader: "json-loader"}
         ]
     },

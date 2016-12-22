@@ -1,7 +1,6 @@
 import React from 'react';
-import jQuery from 'jquery';
-// import newWords from './../new-words';
-import {SERVER_URL, ADD_WORD_FORMS} from './../../constants';
+import WordsSvc from '../../words-service';
+import {ADD_WORD_FORMS} from './../../constants';
 
 export default class NewWordComponent extends React.Component {
   constructor(props) {
@@ -28,8 +27,7 @@ export default class NewWordComponent extends React.Component {
   addWord(event) {
     event.preventDefault();
     const wordData = this.state.formsInput[this.state.selectedWordType];
-    jQuery.post(`${SERVER_URL}/word`, JSON.stringify(wordData), (word) => {
-      word = JSON.parse(word);
+    WordsSvc.add(wordData).then((word) => {
       console.info('word', word.id, 'added');
       this.props.onWordAddedFn(word);
     });
@@ -42,14 +40,18 @@ export default class NewWordComponent extends React.Component {
 
   updateField(event) {
     const wordType = this.state.selectedWordType;
-    var newState = Object.assign(
-      this.state.formsInput[wordType],
-      {[event.target.name]: event.target.value}
+    const newWordObj = Object.assign(
+        {},
+        this.state.formsInput[wordType],
+        {[event.target.name]: event.target.value}
     );
-    this.setState({formsInput: Object.assign(
-      this.state.formsInput,
-      {[wordType]: this.state.formsInput[wordType]}
-    )});
+    this.setState({
+      formsInput: Object.assign(
+        {},
+        this.state.formsInput,
+        {[wordType]: newWordObj}
+        )
+    });
   }
 
   render() {

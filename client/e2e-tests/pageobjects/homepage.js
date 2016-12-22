@@ -39,7 +39,7 @@ module.exports = {
           selector: '.word-card:last-of-type .word-actions .delete-word-btn'
         },
         lastTranslation: {
-          selector: '.word-card:last-of-type .word-keys .word-param:last-of-type span:last-of-type'
+          selector: '.word-card:last-of-type .translation .content'
         }
       }
     },

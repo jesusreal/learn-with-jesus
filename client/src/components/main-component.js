@@ -1,7 +1,5 @@
 import React from 'react';
-import jQuery from 'jquery';
-import * as constants from './../constants';
-
+import WordsSvc from '../words-service';
 import NewWordComponent from './new-word/new-word-component';
 import WordCardComponent from './word-card/word-card-component'
 
@@ -29,7 +27,6 @@ export default class MainComponent extends React.Component {
   }
 
   onWordRemoved(word) {
-    // TODO: daily, weekly and monthly should be in a constants module
     const updatedWords = this.state.words.filter((w) => w.id !== word.id);
     this.setState({words: updatedWords});
   }
@@ -42,10 +39,8 @@ export default class MainComponent extends React.Component {
     );
 
     if(!this.state.listVisible || this.state.lastListDisplayed !== wordsList) {
-      const requestUrl = `${constants.SERVER_URL}/words`;
-      jQuery.get(requestUrl, {list: wordsList}, (data) => {
-        this.setState({words: JSON.parse(data)});
-      });
+      WordsSvc.getAllForList(wordsList)
+        .then((words) => { this.setState({words}) })
     }
 
     if(this.state.lastListDisplayed !== wordsList) {
@@ -67,7 +62,7 @@ export default class MainComponent extends React.Component {
         </div>
         <div id="words-list" className={'block ' + ((this.state.listVisible) ? 'visible' : '')}>
           {this.state.words.map((word, index) =>
-              <WordCardComponent key={index} word={word} onWordRemovedFn={this.onWordRemoved} listKey={this.state.lastListDisplayed}/>
+              <WordCardComponent key={index} word={word} onWordRemovedFn={this.onWordRemoved}/>
           )}
         </div>
         <NewWordComponent onWordAddedFn={this.onWordAdded}/>

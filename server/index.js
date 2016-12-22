@@ -15,13 +15,19 @@ const USER_ID = 1;
 let app = express();
 const wordsFile = './server/words.txt';
 
+const mapWordForFrontend = (word) => {
+    delete word.userId;
+    delete word.step;
+    return word;
+  }
+
 app.listen(SERVER_PORT, SERVER_URL);
 
 app.get('/words', (request, response) => {
   let rl = readline.createInterface({
     input: fs.createReadStream(wordsFile, 'utf8')
   });
-  const list = request.query.list;
+  const list = Number(request.query.list);
 
   response.writeHead(200, HEADER_OPTIONS);
   let words = [];
@@ -30,11 +36,7 @@ app.get('/words', (request, response) => {
     .map((word) => JSON.parse(word))
     .filter((word) => word.userId === USER_ID)
     .filter((word) => word.step === list)
-    .map((word) => {
-      delete word.userId;
-      delete word.step;
-      return word;
-    })
+    .map(mapWordForFrontend)
     .subscribe(
       (word) => { words = words.concat([word]) },
       err => console.error("Error: %s", err),
@@ -42,6 +44,10 @@ app.get('/words', (request, response) => {
   );
 });
 
+app.options('/word', (request, response) => {
+  response.writeHead(200, HEADER_OPTIONS);
+  response.end();
+});
 
 app.post('/word', (request, response) => {
   let reqData = '';
@@ -94,7 +100,7 @@ app.post('/word', (request, response) => {
             stream.once('open', function() {
               stream.write(`${newWord}\n`);
               stream.end();
-              response.end(newWord);
+              response.end(mapWordForFrontend(newWord));
             });
           }
         )

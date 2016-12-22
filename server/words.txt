@@ -1,5 +1,5 @@
-{"userId":1,"type":"verb","step":0,"infinitive":"durchführen","past":"führte durch","perfect":"durchgeführt","translation":"ejecutar algo, realizar algo","id":25}
 {"userId":1,"type":"name","step":0,"singular":"Klarstellung","plural":"Klarstellungen","translation":"aclaración","id":71}
-{"userId":1,"type":"verb","step":0,"infinitive":"anpreisen","translation":"recomendar, promoci onar, promover","past":"pries an","perfect":"angepriesen","id":72}
+{"userId":1,"type":"verb","step":0,"infinitive":"anpreisen","translation":"recomendar, promocionar, promover","past":"pries an","perfect":"angepriesen","id":72}
 {"userId":1,"id":3,"type":"verb","step":1,"infinitive":"genießen","past":"genoss","perfect":"genossen","translation":"disfrutar de algo"}
 {"userId":1,"id":4,"type":"other","step":2,"word":"schön","translation":"bonito"}
+{"id":73,"userId":1,"step":0,"type":"name","singular":"dfdafsf","genre":null,"plural":null,"translation":null}

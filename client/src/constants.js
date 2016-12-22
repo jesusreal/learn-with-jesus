@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const SERVER_URL = 'http://127.0.0.1:3333';
-export const WORD_FIELDS_NOT_TO_SHOW = ['id', 'type', 'step', 'userId'];
+export const WORD_FIELDS_NOT_TO_SHOW = ['id', 'type'];
 export const ADD_WORD_FORMS = {
   // Field name and text. Think about translations
   name: {

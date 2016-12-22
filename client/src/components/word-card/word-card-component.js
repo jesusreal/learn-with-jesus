@@ -1,5 +1,5 @@
 import React from 'react';
-import jQuery from 'jquery';
+import WordsSvc from '../../words-service';
 import * as constants from './../../constants';
 
 export default class WordCardComponent extends React.Component {
@@ -13,13 +13,11 @@ export default class WordCardComponent extends React.Component {
 
   deleteWord() {
     let word = this.props.word;
-    let listKey = this.props.listKey;
-    let requestUrl = `${constants.SERVER_URL}/word`;
-    // ToDo: add in db a word title to avoid this
+    // ToDo: get words should add a "title" key to avoid this, i.e., this logic should go to the backend, more precisely to the get method
     const wordName = word.word || word.infinitive || word.singular;
     const confirmed = window.confirm(`Are you sure you want to delete word "${wordName}"`)
     if(confirmed) {
-      jQuery.post(requestUrl, JSON.stringify({wordId: word.id, listKey, action: 'delete'}), () => {
+      WordsSvc.remove(word.id).then(() => {
         console.info('word', word.id, 'removed');
         this.props.onWordRemovedFn(word);
       });
@@ -39,27 +37,26 @@ export default class WordCardComponent extends React.Component {
             Object.keys(this.props.word)
               .filter((key) => !constants.WORD_FIELDS_NOT_TO_SHOW.includes(key))
               .map((key) =>
-                <div className="word-param" key={key}>
-                  <span className="word-key">{key}:&nbsp;</span>
-                  <span>{this.props.word[key]}</span>
+                <div className={"word-param " + key} key={key}>
+                  <span className="key">{key}:&nbsp;</span>
+                  <span className="content">{this.props.word[key]}</span>
                 </div>
               )
           }
         </div>
         <div className="word-actions">
           <button type="button" className="delete-word-btn" onClick={this.deleteWord}>X</button>
-          <button type="button" className="edit-word-btn disabled" onClick={this.edit}>Edit</button>
-          <button disabled type="button" className="to-next-list-btn disabled" onClick={this.moveWord}>Next</button>
-          <button disabled type="button" className="to-prev-list-btn disabled" onClick={this.moveWord}>Prev</button>
         </div>
       </div>
     );
   }
 }
+// <button type="button" className="edit-word-btn disabled" onClick={this.edit}>Edit</button>
+// <button disabled type="button" className="to-next-list-btn disabled" onClick={this.moveWord}>Next</button>
+// <button disabled type="button" className="to-prev-list-btn disabled" onClick={this.moveWord}>Prev</button>
 
 WordCardComponent.propTypes = {
   onWordRemovedFn: React.PropTypes.func,
-  word: React.PropTypes.object,
-  listKey: React.PropTypes.number
+  word: React.PropTypes.object
 };
 
