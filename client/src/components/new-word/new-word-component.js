@@ -1,84 +1,64 @@
 import React from 'react';
 import jQuery from 'jquery';
 // import newWords from './../new-words';
-import * as constants from './../../constants';
+import {SERVER_URL, ADD_WORD_FORMS} from './../../constants';
 
 export default class NewWordComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.forms = {
-      // Field name and text. Think about translations
-      name: [
-        ['singular', 'Singular', 'text'],
-        ['genre', 'Genre', 'select' ,
-            <select><option value="der">Der</option><option value="die">Die</option> <option value="das">Das</option></select>
-        ],
-        ['plural', 'Plural', 'text'],
-        ['translation', 'Translation', 'text']
-      ],
-      verb: [
-        ['infinitive', 'Infinitive', 'text'],
-        ['past', 'Past', 'text'],
-        ['perfect', 'Perfect', 'text'],
-        ['translation', 'Translation', 'text']
-      ],
-      other: [
-        ['word', 'Word', 'text'],
-        ['translation', 'Translation', 'text']
-      ]
-    };
+    this.wordsForms = ADD_WORD_FORMS;
 
     this.state = {
-      type: 'name'
+      selectedWordType: 'name',
+      formsInput: Object.keys(this.wordsForms)
+        .reduce((acc, wordType) => {
+          acc[wordType] = Object.assign(
+            {type: wordType},
+            Object.keys(this.wordsForms[wordType]).reduce((acc, param) => { acc[param] = null; return acc }, {})
+          )
+          return acc;
+        }, {})
     };
 
     this.addWord = this.addWord.bind(this);
-    this.getFormData = this.getFormData.bind(this);
     this.onSelectionChange = this.onSelectionChange.bind(this);
     this.updateField = this.updateField.bind(this);
   }
 
-  componentDidMount() {
-    Object.keys(this.forms).forEach((type) => {
-      this.setState({[type]: {type}});
-    });
-  }
-
   addWord(event) {
     event.preventDefault();
-    const wordData = this.state[this.state.type];
-    jQuery.post(`${constants.SERVER_URL}/word`, JSON.stringify(wordData), (word) => {
+    const wordData = this.state.formsInput[this.state.selectedWordType];
+    jQuery.post(`${SERVER_URL}/word`, JSON.stringify(wordData), (word) => {
       word = JSON.parse(word);
       console.info('word', word.id, 'added');
-      this.props.addOrRemoveWordFn(word, 'add');
+      this.props.onWordAddedFn(word);
     });
-  }
-
-  getFormData() {
-    const type = this.state.type;
-    return this.forms[type] || null;
+    // ToDo: reset word
   }
 
   onSelectionChange(event) {
-    this.setState({type: event.target.value});
+    this.setState({selectedWordType: event.target.value});
   }
 
   updateField(event) {
-    const type = this.state.type;
+    const wordType = this.state.selectedWordType;
     var newState = Object.assign(
-      {},
-      this.state[type],
+      this.state.formsInput[wordType],
       {[event.target.name]: event.target.value}
     );
-    this.setState({[type]: newState});
+    this.setState({formsInput: Object.assign(
+      this.state.formsInput,
+      {[wordType]: this.state.formsInput[wordType]}
+    )});
   }
 
   render() {
-    const formData = this.getFormData();
+    const formData = this.wordsForms[this.state.selectedWordType];
+    const formInput = this.state.formsInput[this.state.selectedWordType];
 
     return (
       <div id="add-word-forms" className="block">
-        <form name={this.props.type + '-form'}>
+        <form name={this.state.selectedWordType + '-form'}>
           <div id="add-word-menu" className="block">
             <h6>Add a new word:</h6>
             <select autoFocus="autofocus" onChange={this.onSelectionChange}>
@@ -87,21 +67,15 @@ export default class NewWordComponent extends React.Component {
               <option value="other">Other</option>
             </select>
           </div>
-          {formData.map((formElem, i) =>
+          {Object.keys(formData).map((param, i) =>
             <div className="word-param-input" key={'word-type-form-elem' + i}>
-              <label htmlFor={formElem[0]}>
-                {formElem[1]}
+              <label htmlFor={param}>
+                {formData[param].text}
               </label>
-              {(() => {
-                switch (formElem[2]) {
-                  case "select":
-                    return formElem[3];
-                    break;
-                  default:
-                    return <input name={formElem[0]} onChange={this.updateField} type={formElem[2]}/>
-;
-                }
-              })()}
+              {
+                formData[param].html ||
+                <input required="required" name={param} value={formInput[param] || ''} onChange={this.updateField} type={formData[param].inputType}/>
+              }
             </div>
           )}
           <button type="submit" id="add-word-btn" onClick={this.addWord} autoFocus="autofocus">
@@ -114,6 +88,5 @@ export default class NewWordComponent extends React.Component {
 }
 
 NewWordComponent.propTypes = {
-  addOrRemoveWordFn: React.PropTypes.func,
-  type: React.PropTypes.string
+  onWordAddedFn: React.PropTypes.func
 };

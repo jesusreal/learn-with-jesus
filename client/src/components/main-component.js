@@ -16,38 +16,39 @@ export default class MainComponent extends React.Component {
       lastListDisplayed: null
     };
 
-    this.showNewWords = this.showNewWords.bind(this);
-    this.addOrRemoveWordFn = this.addOrRemoveWordFn.bind(this);
+    this.onListBtnClicked = this.onListBtnClicked.bind(this);
+    this.onWordAdded = this.onWordAdded.bind(this);
+    this.onWordRemoved = this.onWordRemoved.bind(this);
   }
 
-  // ToDo: Should be onWordAdded and onWordRemoved
-  addOrRemoveWordFn(targetWord, action) {
+  onWordAdded(word) {
+    if(this.state.listVisible && this.state.lastListDisplayed === 0) {
+      const updatedWords = this.state.words.concat(word);
+      this.setState({words: updatedWords});
+    }
+  }
+
+  onWordRemoved(word) {
     // TODO: daily, weekly and monthly should be in a constants module
-    // TODO: Also actions for words "add" and "remove"
-    if (action === 'add' && this.state.listVisible && this.state.lastListDisplayed === 'daily') {
-      let newWords = this.state.words.concat(targetWord);
-      this.setState({words: newWords});
-    }
-
-    if (action === 'remove') {
-      let currentWords = this.state.words;
-      let newWords = currentWords.filter( (word) => word.id !== targetWord.id );
-      this.setState({words: newWords});
-    }
+    const updatedWords = this.state.words.filter((w) => w.id !== word.id);
+    this.setState({words: updatedWords});
   }
 
-  showNewWords(event) {
-    let wordsList = event.target.id.split('-')[0];
+  onListBtnClicked(event) {
+    const wordsList = Number(
+      event.target.id
+        .split('-')[0]
+        .substr(-1)
+    );
 
-    if (!this.state.listVisible || this.state.lastListDisplayed !== wordsList) {
-      let requestUrl = `${constants.SERVER_URL}/words`;
-      this.setState({words: []});
+    if(!this.state.listVisible || this.state.lastListDisplayed !== wordsList) {
+      const requestUrl = `${constants.SERVER_URL}/words`;
       jQuery.get(requestUrl, {list: wordsList}, (data) => {
         this.setState({words: JSON.parse(data)});
       });
     }
 
-    if (this.state.lastListDisplayed !== wordsList) {
+    if(this.state.lastListDisplayed !== wordsList) {
       this.setState({listVisible: true});
       this.setState({lastListDisplayed: wordsList});
     } else {
@@ -60,16 +61,16 @@ export default class MainComponent extends React.Component {
     return (
       <div>
         <div id="words-groups" className="block">
-          <button type="button" id="daily-words-btn" onClick={this.showNewWords}>Daily</button>
-          <button type="button" id="weekly-words-btn" onClick={this.showNewWords}>Weekly</button>
-          <button type="button" id="monthly-words-btn" onClick={this.showNewWords}>Monthly</button>
+          <button type="button" id="step0-words-btn" onClick={this.onListBtnClicked}>Daily</button>
+          <button type="button" id="step1-words-btn" onClick={this.onListBtnClicked}>Weekly</button>
+          <button type="button" id="step2-words-btn" onClick={this.onListBtnClicked}>Monthly</button>
         </div>
         <div id="words-list" className={'block ' + ((this.state.listVisible) ? 'visible' : '')}>
           {this.state.words.map((word, index) =>
-              <WordCardComponent key={index} word={word} addOrRemoveWordFn={this.addOrRemoveWordFn} listKey={this.state.lastListDisplayed}/>
+              <WordCardComponent key={index} word={word} onWordRemovedFn={this.onWordRemoved} listKey={this.state.lastListDisplayed}/>
           )}
         </div>
-        <NewWordComponent addOrRemoveWordFn={this.addOrRemoveWordFn}/>
+        <NewWordComponent onWordAddedFn={this.onWordAdded}/>
       </div>
     );
   }

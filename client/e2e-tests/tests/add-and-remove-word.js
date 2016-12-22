@@ -17,7 +17,8 @@ module.exports = {
       .setValue('@inputTranslation', 'Car')
       .click('@btnAddWord');
 
-    homepage.section.wordsGroups.click('@btnDaily')
+
+    homepage.section.wordsGroups.click('@btnStep0');
 
     wordsList
       .expect.element('@lastTranslation').text.equal('Car');

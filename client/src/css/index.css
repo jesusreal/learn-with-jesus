@@ -152,6 +152,10 @@ button:focus {
   cursor: none;
 }
 
+button.disabled {
+  background-color: gray;
+}
+
 #add-word-btn {
   background-color: #364F6B;
 }

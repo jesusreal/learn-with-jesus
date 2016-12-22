@@ -46,8 +46,8 @@ module.exports = {
     wordsGroups: {
       selector: '#words-groups',
       elements: {
-        btnDaily: {
-          selector: '#daily-words-btn'
+        btnStep0: {
+          selector: '#step0-words-btn'
         }
       }
     }

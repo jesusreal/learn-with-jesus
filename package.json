@@ -16,7 +16,8 @@
     "start": "mkdir -p client/dist && concurrently \"npm run build:watch\" \"'npm run dev'\" \"npm run backend\" ",
     "test": "mocha client/src --recursive --reporter list --compilers js:babel-register --colors",
     "test:watch": "npm test -- -w",
-    "test-e2e": "'./node_modules/nightwatch/bin/nightwatch' --config './client/e2e-tests/nightwatch.config.json' --tag e2e"
+    "test-e2e": "'./node_modules/nightwatch/bin/nightwatch' --config './client/e2e-tests/nightwatch.config.json' --tag e2e",
+    "test-all": "npm test && npm run test-e2e"
   },
   "author": "Jesús Real Serrano <jesus.real@outlook.com>",
   "license": "MIT",
@@ -53,6 +54,7 @@
     "jquery": "^3.0.0",
     "node-fetch": "^1.3.3",
     "react": "^15.0.x",
-    "react-dom": "^15.0.x"
+    "react-dom": "^15.0.x",
+    "rxjs": "^5.0.1"
   }
 }
