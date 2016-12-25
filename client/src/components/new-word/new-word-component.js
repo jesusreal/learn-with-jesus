@@ -1,6 +1,7 @@
 import React from 'react';
 import WordsSvc from '../../words-service';
 import {ADD_WORD_FORMS} from './../../constants';
+import $ from 'jquery';
 
 export default class NewWordComponent extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ export default class NewWordComponent extends React.Component {
     return Object.assign(
       {type},
       Object.keys(ADD_WORD_FORMS[type]).reduce((acc, param) => {
-        acc[param] = null;
+        acc[param] = (param === 'genre') ? 'der' : null;
         return acc
       }, {})
     )
@@ -55,6 +56,7 @@ export default class NewWordComponent extends React.Component {
       wordData.type,
       this.getResetWordObj(wordData.type)
     );
+    $('select[name="genre"]').prop('selectedIndex', 0);
   }
 
   updateField({target}) {
@@ -72,7 +74,7 @@ export default class NewWordComponent extends React.Component {
 
     return (
       <div id="add-word-forms" className="block">
-        <form name={this.state.selectedWordType + '-form'}>
+        <form name={this.state.selectedWordType + '-form'} onSubmit={this.addWord}>
           <div id="add-word-menu" className="block">
             <h6>Add a new word:</h6>
             <select autoFocus="autofocus" onChange={this.onWordTypeChange}>
@@ -87,12 +89,18 @@ export default class NewWordComponent extends React.Component {
                 {formData[param].text}
               </label>
               {
-                formData[param].html ||
-                <input required="required" name={param} value={formInput[param] || ''} onChange={this.updateField} type={formData[param].inputType}/>
+                param === 'genre' ?
+                  <select required name={param} onChange={this.updateField}>
+                    <option value="der">Der</option>
+                    <option value="die">Die</option>
+                    <option value="das">Das</option>
+                  </select>
+                :
+                  <input required name={param} value={formInput[param] || ''} onChange={this.updateField} type={formData[param].inputType}/>
               }
             </div>
           )}
-          <button type="submit" id="add-word-btn" onClick={this.addWord} autoFocus="autofocus">
+          <button type="submit" id="add-word-btn" autoFocus="autofocus">
             Add word
           </button>
         </form>

@@ -17,8 +17,7 @@ export const ADD_WORD_FORMS = {
     },
     genre: {
       text:'Genre',
-      inputType:'select',
-      html: <select><option value="der">Der</option><option value="die">Die</option> <option value="das">Das</option></select>
+      inputType:'select'
     },
     plural: {
       text:'Plural',
