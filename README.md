@@ -1,3 +1,3 @@
 Learning vocabulary app
 
-npm run watch:build:app-reload
+npm start is all you need to have it running :)
