@@ -58,8 +58,8 @@ export default class MainComponent extends React.Component {
       <div>
         <div id="words-groups" className="block">
           {
-            WORDS_LISTS_BUTTONS.map((btn) =>
-              <button type="button" id={'step' + btn.apiStepId + '-words-btn'} onClick={this.onListBtnClicked}>{btn.text}</button>
+            WORDS_LISTS_BUTTONS.map((btn, index) =>
+              <button type="button" id={'step' + btn.apiStepId + '-words-btn'} onClick={this.onListBtnClicked} key={index}>{btn.text}</button>
             )
           }
         </div>

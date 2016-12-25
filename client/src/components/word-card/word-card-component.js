@@ -13,9 +13,7 @@ export default class WordCardComponent extends React.Component {
 
   deleteWord() {
     let word = this.props.word;
-    // ToDo: get words should add a "title" key to avoid this, i.e., this logic should go to the backend, more precisely to the get method
-    const wordName = word.word || word.infinitive || word.singular;
-    const confirmed = window.confirm(`Are you sure you want to delete word "${wordName}"`)
+    const confirmed = window.confirm(`Are you sure you want to delete word "${word.title}"`)
     if(confirmed) {
       WordsSvc.remove(word.id).then(() => {
         console.info('word', word.id, 'removed');
@@ -24,10 +22,10 @@ export default class WordCardComponent extends React.Component {
     }
   }
 
-  edit() {
-    // New component, as content type (read to write) and buttons change?
-    // Then, parent component should decide which component to render
-  }
+  // edit() {
+  //   // New component, as content type (read to write) and buttons change?
+  //   // Then, parent component should decide which component to render
+  // }
 
   render() {
     return (

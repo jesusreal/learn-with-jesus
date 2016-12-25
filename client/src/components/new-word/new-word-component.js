@@ -5,23 +5,43 @@ import {ADD_WORD_FORMS} from './../../constants';
 export default class NewWordComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.wordsForms = ADD_WORD_FORMS;
 
     this.state = {
       selectedWordType: 'name',
-      formsInput: Object.keys(this.wordsForms)
+      formsInput: Object.keys(ADD_WORD_FORMS)
         .reduce((acc, wordType) => {
-          acc[wordType] = Object.assign(
-            {type: wordType},
-            Object.keys(this.wordsForms[wordType]).reduce((acc, param) => { acc[param] = null; return acc }, {})
-          )
+          acc[wordType] = this.getResetWordObj(wordType);
           return acc;
         }, {})
     };
 
-    this.addWord = this.addWord.bind(this);
-    this.onSelectionChange = this.onSelectionChange.bind(this);
+    this.onWordTypeChange = this.onWordTypeChange.bind(this);
     this.updateField = this.updateField.bind(this);
+    this.addWord = this.addWord.bind(this);
+  }
+
+  getResetWordObj(type) {
+    return Object.assign(
+      {type},
+      Object.keys(ADD_WORD_FORMS[type]).reduce((acc, param) => {
+        acc[param] = null;
+        return acc
+      }, {})
+    )
+  }
+
+  updateWordObj(type, newObj){
+    this.setState({
+      formsInput: Object.assign(
+        {},
+        this.state.formsInput,
+        {[type]: newObj}
+      )
+    });
+  }
+
+  onWordTypeChange(event) {
+    this.setState({selectedWordType: event.target.value});
   }
 
   addWord(event) {
@@ -31,31 +51,23 @@ export default class NewWordComponent extends React.Component {
       console.info('word', word.id, 'added');
       this.props.onWordAddedFn(word);
     });
-    // ToDo: reset word
-  }
-
-  onSelectionChange(event) {
-    this.setState({selectedWordType: event.target.value});
-  }
-
-  updateField(event) {
-    const wordType = this.state.selectedWordType;
-    const newWordObj = Object.assign(
-        {},
-        this.state.formsInput[wordType],
-        {[event.target.name]: event.target.value}
+    this.updateWordObj(
+      wordData.type,
+      this.getResetWordObj(wordData.type)
     );
-    this.setState({
-      formsInput: Object.assign(
-        {},
-        this.state.formsInput,
-        {[wordType]: newWordObj}
-        )
-    });
   }
+
+  updateField({target}) {
+    const wordData = this.state.formsInput[this.state.selectedWordType];
+    this.updateWordObj(
+      wordData.type,
+      Object.assign({}, wordData, {[target.name]: target.value})
+    );
+  }
+
 
   render() {
-    const formData = this.wordsForms[this.state.selectedWordType];
+    const formData = ADD_WORD_FORMS[this.state.selectedWordType];
     const formInput = this.state.formsInput[this.state.selectedWordType];
 
     return (
@@ -63,7 +75,7 @@ export default class NewWordComponent extends React.Component {
         <form name={this.state.selectedWordType + '-form'}>
           <div id="add-word-menu" className="block">
             <h6>Add a new word:</h6>
-            <select autoFocus="autofocus" onChange={this.onSelectionChange}>
+            <select autoFocus="autofocus" onChange={this.onWordTypeChange}>
               <option value="name">Name</option>
               <option value="verb">Verb</option>
               <option value="other">Other</option>

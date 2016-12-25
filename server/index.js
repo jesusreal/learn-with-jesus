@@ -18,6 +18,7 @@ const wordsFile = './server/words.txt';
 const mapWordForFrontend = (word) => {
     delete word.userId;
     delete word.step;
+    word.title = word.word || word.infinitive || word.singular;
     return word;
   }
 
@@ -92,15 +93,15 @@ app.post('/word', (request, response) => {
           id => { newId = id },
           err => console.error("Error: %s", err),
           () => {
-            const newWord = JSON.stringify(Object.assign(
-              {id: newId + 1, userId: USER_ID, step: 0},
-              reqData)
-            );
             const stream = fs.createWriteStream(wordsFile, {flags:'a'});
             stream.once('open', function() {
-              stream.write(`${newWord}\n`);
+              const newWord = Object.assign(
+                {id: newId + 1, userId: USER_ID, step: 0},
+                reqData
+              )
+              stream.write(`${JSON.stringify(newWord)}\n`);
               stream.end();
-              response.end(mapWordForFrontend(newWord));
+              response.end(JSON.stringify(mapWordForFrontend(newWord)));
             });
           }
         )
