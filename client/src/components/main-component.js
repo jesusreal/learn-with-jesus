@@ -1,5 +1,6 @@
 import React from 'react';
 import WordsSvc from '../words-service';
+import {WORDS_LISTS_BUTTONS} from './../constants';
 import NewWordComponent from './new-word/new-word-component';
 import WordCardComponent from './word-card/word-card-component'
 
@@ -56,9 +57,11 @@ export default class MainComponent extends React.Component {
     return (
       <div>
         <div id="words-groups" className="block">
-          <button type="button" id="step0-words-btn" onClick={this.onListBtnClicked}>Daily</button>
-          <button type="button" id="step1-words-btn" onClick={this.onListBtnClicked}>Weekly</button>
-          <button type="button" id="step2-words-btn" onClick={this.onListBtnClicked}>Monthly</button>
+          {
+            WORDS_LISTS_BUTTONS.map((btn) =>
+              <button type="button" id={'step' + btn.apiStepId + '-words-btn'} onClick={this.onListBtnClicked}>{btn.text}</button>
+            )
+          }
         </div>
         <div id="words-list" className={'block ' + ((this.state.listVisible) ? 'visible' : '')}>
           {this.state.words.map((word, index) =>
