@@ -1,3 +1,5 @@
 {"userId":1,"type":"name","step":0,"singular":"Klarstellung","genre":"die","plural":"Klarstellungen","translation":"aclaración","id":1}
-{"userId":1,"type":"verb","step":0,"infinitive":"anpreisen","translation":"recomendar, promocionar, promover","past":"pries an","perfect":"angepriesen","id":3}
-{"userId":1,"id":4,"type":"verb","step":1,"infinitive":"genießen","past":"genoss","perfect":"genossen","translation":"disfrutar de algo"}
+{"userId":1,"type":"verb","step":0,"infinitive":"durchführen","past":"führte durch","perfect":"durchgeführt","translation":"ejecutar algo, realizar algo","id":2}
+{"userId":1,"type":"verb","step":0,"infinitive":"anpreisen","translation":"recomendar, promocionar, promover","past":"pries an","perfect":"angepriesen","id":4}
+{"userId":1,"id":5,"type":"verb","step":1,"infinitive":"genießen","past":"genoss","perfect":"genossen","translation":"disfrutar de algo"}
+{"userId":1,"id":4,"type":"other","step":2,"word":"schön","translation":"bonito"}

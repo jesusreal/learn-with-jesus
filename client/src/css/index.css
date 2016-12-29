@@ -48,19 +48,41 @@ input {
 }
 
 #words-list.visible {
-  display: block;
-  // margin-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 
 .word-card {
   border-radius: 0.2em;
   border: 1px solid black;
-  width: 20em;
-  margin: 1em auto;
+  height: 200px;
   background-color: #F5F5F5;
   color: #EEEEEE;
-  display: inline-flex;
+  display: flex;
+  flex-basis: 80%;
+  margin: 20px 0px;
+}
+
+@media screen and (min-width: 480px) {
+  .word-card {
+    flex-basis: 70%;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .word-card {
+    flex-basis: 60%;
+  }
+}
+
+
+@media screen and (min-width: 720px) {
+  .word-card {
+    margin: 20px;
+    flex-basis: auto;
+  }
 }
 
 .word-card.name {
@@ -84,7 +106,6 @@ input {
 }
 
 .word-actions, .word-keys {
-  width: 50%;
   padding: 1em;
 }
 
@@ -92,6 +113,8 @@ input {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-start;
   text-align: left;
 }
 
@@ -102,9 +125,8 @@ input {
 }
 
 .word-actions button {
-  width: 5em;
-  padding-left: 0;
-  padding-right: 0;
+  width: auto;
+  padding: 0.5em;
   background-color: black;
   background-color: #60210e;
   text-align: center;

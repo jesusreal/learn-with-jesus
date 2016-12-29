@@ -35,7 +35,7 @@ export default class WordCardComponent extends React.Component {
             Object.keys(this.props.word)
               .filter((key) => !constants.WORD_FIELDS_NOT_TO_SHOW.includes(key))
               .map((key) =>
-                <div className={"word-param " + key} key={key}>
+                <div className={'word-param ' + key} key={key}>
                   <span className="key">{key}:&nbsp;</span>
                   <span className="content">{this.props.word[key]}</span>
                 </div>
