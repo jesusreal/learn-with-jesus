@@ -1,8 +1,8 @@
-let express = require('express');
-let fs = require('fs');
-let readline = require('readline');
-let Rx = require('rxjs/Rx');
+const express = require('express');
+const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
 
+const DB_URL = 'mongodb://127.0.0.1:27017/';
 const SERVER_PORT = 3333;
 const SERVER_URL = '127.0.0.1';
 const HEADER_OPTIONS = {
@@ -12,100 +12,71 @@ const HEADER_OPTIONS = {
 };
 const USER_ID = 1;
 
-let app = express();
-const wordsFile = './server/words.txt';
+const app = express();
 
 const mapWordForFrontend = (word) => {
-    delete word.userId;
-    delete word.step;
-    word.title = word.word || word.infinitive || word.singular;
-    return word;
-  }
+  delete word.userId;
+  delete word.step;
+  word.title = word.word || word.infinitive || word.singular;
+  return word;
+}
 
 app.listen(SERVER_PORT, SERVER_URL);
 
-app.get('/words', (request, response) => {
-  let rl = readline.createInterface({
-    input: fs.createReadStream(wordsFile, 'utf8')
-  });
-  const list = Number(request.query.list);
-
-  response.writeHead(200, HEADER_OPTIONS);
-  let words = [];
-  Rx.Observable.fromEvent(rl, 'line')
-    .takeUntil(Rx.Observable.fromEvent(rl, 'close'))
-    .map((word) => JSON.parse(word))
-    .filter((word) => word.userId === USER_ID)
-    .filter((word) => word.step === list)
-    .map(mapWordForFrontend)
-    .subscribe(
-      (word) => { words = words.concat([word]) },
-      err => console.error("Error: %s", err),
-      () => { response.end(JSON.stringify(words)) }
-  );
-});
 
 app.options('/word', (request, response) => {
   response.writeHead(200, HEADER_OPTIONS);
   response.end();
 });
 
+
+app.get('/words', (request, response) => {
+  response.writeHead(200, HEADER_OPTIONS);
+  MongoClient.connect(DB_URL, (err, db) => {
+    db.collection('words')
+      .find({userId: USER_ID, step: Number(request.query.step)})
+      .toArray((err, result) => {
+        db.close();
+        response.end(JSON.stringify(
+          result.map(mapWordForFrontend)
+        ));
+      });
+  });
+});
+
+
 app.post('/word', (request, response) => {
-  let reqData = '';
-
-  request.on('data', (data) => { reqData = JSON.parse(data) });
-
-  request.on('end', () => {
-    response.writeHead(200, HEADER_OPTIONS);
-
-    if(reqData.action === 'delete') {
-      let rl = readline.createInterface({
-        input: fs.createReadStream(wordsFile, 'utf8')
-      });
-      let resultStr = '';
-      Rx.Observable.fromEvent(rl, 'line')
-        .takeUntil(Rx.Observable.fromEvent(rl, 'close'))
-        .map((word) => JSON.parse(word))
-        .filter((word) => word.id !== reqData.wordId)
-        .subscribe(
-          (word) => { resultStr += JSON.stringify(word) + '\n'},
-          err => console.error("Error: %s", err),
-          () => {
-            const stream = fs.createWriteStream(wordsFile);
-            stream.once('open', function() {
-              stream.write(resultStr);
-              stream.end();
-              response.end(`Word successfully deleted for user ${USER_ID}`);
-            });
-          }
+  request.on('data', (data) => {
+    const wordObj = JSON.parse(data);
+    request.on('end', () => {
+      response.writeHead(200, HEADER_OPTIONS);
+      MongoClient.connect(DB_URL, (err, db) => {
+        const newWord = Object.assign(
+          {userId: USER_ID, step: 0},
+          wordObj
         )
-    } else {
-      let rl = readline.createInterface({
-        input: fs.createReadStream(wordsFile, 'utf8')
+        db.collection('words').insert(newWord, () => {
+          db.close();
+          response.end(JSON.stringify(mapWordForFrontend(newWord)));
+        });
       });
-      let newId;
-      Rx.Observable.fromEvent(rl, 'line')
-        .takeUntil(Rx.Observable.fromEvent(rl, 'close'))
-        .map((word) => JSON.parse(word))
-        .map((word) => word.id)
-        .max()
-        .subscribe(
-          id => { newId = id },
-          err => console.error("Error: %s", err),
-          () => {
-            const stream = fs.createWriteStream(wordsFile, {flags:'a'});
-            stream.once('open', function() {
-              const newWord = Object.assign(
-                {id: newId + 1, userId: USER_ID, step: 0},
-                reqData
-              )
-              stream.write(`${JSON.stringify(newWord)}\n`);
-              stream.end();
-              response.end(JSON.stringify(mapWordForFrontend(newWord)));
-            });
-          }
-        )
-    }
+    });
+  });
+});
+
+
+app.delete('/word', (request, response) => {
+  request.on('data', (data) => {
+    const wordId = JSON.parse(data).wordId;
+    request.on('end', () => {
+      response.writeHead(200, HEADER_OPTIONS);
+      MongoClient.connect(DB_URL, (err, db) => {
+        db.collection('words').remove({'_id': ObjectID(wordId)}, () => {
+          db.close();
+          response.end(JSON.stringify({'_id': wordId}));
+        });
+      });
+    });
   });
 });
 

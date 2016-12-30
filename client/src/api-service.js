@@ -18,7 +18,8 @@ export default {
   },
 
   remove(url, body) {
-    return popsicle({method: 'POST', url, body})
+    return popsicle({method: 'DELETE', url, body})
+      .then((response) => JSON.parse(response.body))
       .catch((error) => { catchFn(error, url, 'DELETE') });
   }
 }

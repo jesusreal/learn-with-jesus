@@ -27,8 +27,8 @@ export default class MainComponent extends React.Component {
     }
   }
 
-  onWordRemoved(word) {
-    const updatedWords = this.state.words.filter((w) => w.id !== word.id);
+  onWordRemoved(wordId) {
+    const updatedWords = this.state.words.filter((w) => w._id !== wordId);
     this.setState({words: updatedWords});
   }
 
@@ -39,17 +39,25 @@ export default class MainComponent extends React.Component {
         .substr(-1)
     );
 
-    if(!this.state.listVisible || this.state.lastListDisplayed !== wordsList) {
-      WordsSvc.getAllForList(wordsList)
-        .then((words) => { this.setState({words}) })
-    }
-
-    if(this.state.lastListDisplayed !== wordsList) {
-      this.setState({listVisible: true});
-      this.setState({lastListDisplayed: wordsList});
-    } else {
-      this.setState({listVisible: !this.state.listVisible});
-    }
+    new Promise((resolve) => {
+      if(!this.state.listVisible || this.state.lastListDisplayed !== wordsList) {
+        WordsSvc.getAllForList(wordsList)
+          .then((words) => {
+            this.setState({words});
+            resolve();
+          });
+      } else {
+        resolve();
+      }
+    }).then(() => {
+      // Make list visible only after words are updated to avoid flickering between old and new list
+      if(this.state.lastListDisplayed !== wordsList) {
+        this.setState({listVisible: true});
+        this.setState({lastListDisplayed: wordsList});
+      } else {
+        this.setState({listVisible: !this.state.listVisible});
+      }
+    });
   }
 
 

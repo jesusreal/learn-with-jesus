@@ -10,7 +10,8 @@ module.exports = {
   },
   globals: {
     "module": false,
-    "require": false
+    "require": false,
+    "Promise": false
   },
   rules: {
     "require-jsdoc": 0,
