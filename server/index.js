@@ -2,7 +2,7 @@ const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 
-const DB_URL = 'mongodb://127.0.0.1:27017/';
+const DB_URL = 'mongodb://127.0.0.1:27017/data';
 const SERVER_PORT = 3333;
 const SERVER_URL = '127.0.0.1';
 const HEADER_OPTIONS = {

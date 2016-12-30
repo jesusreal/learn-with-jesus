@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "backend": "node server/index.js",
-    "db": "mongod --dbpath ./server/db/",
+    "db": "   ",
     "dev": "webpack-dev-server",
     "env": "env",
     "lint": "eslint --format table --color client/src/ server; exit 0",
