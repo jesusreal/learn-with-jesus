@@ -2,8 +2,8 @@ import {SERVER_URL} from './constants';
 import ApiService from './api-service';
 
 export default {
-  getAllForList(list){
-    return ApiService.get(`${SERVER_URL}/words`, {list})
+  getAllForList(step){
+    return ApiService.get(`${SERVER_URL}/words`, {step})
   },
 
   add(wordData){
@@ -11,8 +11,7 @@ export default {
   },
 
   remove(wordId){
-    const body = {wordId, action: 'delete'};
-    return ApiService.remove(`${SERVER_URL}/word`, body)
+    return ApiService.remove(`${SERVER_URL}/word`, {wordId})
   }
 
   // edit(){},

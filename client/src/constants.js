@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const SERVER_URL = 'http://127.0.0.1:3333';
-export const WORD_FIELDS_NOT_TO_SHOW = ['id', 'type'];
+export const WORD_FIELDS_NOT_TO_SHOW = ['_id', 'type', 'title'];
 export const WORDS_LISTS_BUTTONS = [
   {text: 'Daily', apiStepId: 0},
   {text: 'Weekly', apiStepId: 1},

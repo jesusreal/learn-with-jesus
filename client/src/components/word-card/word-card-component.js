@@ -15,9 +15,9 @@ export default class WordCardComponent extends React.Component {
     let word = this.props.word;
     const confirmed = window.confirm(`Are you sure you want to delete word "${word.title}"`)
     if(confirmed) {
-      WordsSvc.remove(word.id).then(() => {
-        console.info('word', word.id, 'removed');
-        this.props.onWordRemovedFn(word);
+      WordsSvc.remove(word._id).then((wordRemoved) => {
+        console.info('word', wordRemoved._id, 'removed');
+        this.props.onWordRemovedFn(wordRemoved._id);
       });
     }
   }
