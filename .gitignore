@@ -4,3 +4,5 @@ node_modules
 *.log
 *reports*
 server/test*
+server/db/diagnostic*
+server/db/journal*
