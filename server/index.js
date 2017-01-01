@@ -1,6 +1,7 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
+const fs = require('fs');
 
 const DB_URL = 'mongodb://127.0.0.1:27017/data';
 const SERVER_PORT = 3333;
@@ -20,6 +21,24 @@ const mapWordForFrontend = (word) => {
   word.title = word.word || word.infinitive || word.singular;
   return word;
 }
+
+const doDbBackup = () => {
+  MongoClient.connect(DB_URL, (err, db) => {
+    db.collection('words')
+      .find({})
+      .toArray((err, result) => {
+        db.close();
+        fs.writeFile(
+          './server/db-backup/words.txt',
+          JSON.stringify(result),
+          (err) => {
+            if(err) console.error('ERROR: DB backup failed');
+          }
+        );
+      });
+  });
+}
+
 
 app.listen(SERVER_PORT, SERVER_URL);
 
@@ -58,6 +77,7 @@ app.post('/word', (request, response) => {
         db.collection('words').insert(newWord, () => {
           db.close();
           response.end(JSON.stringify(mapWordForFrontend(newWord)));
+          doDbBackup();
         });
       });
     });
@@ -74,6 +94,7 @@ app.delete('/word', (request, response) => {
         db.collection('words').remove({'_id': ObjectID(wordId)}, () => {
           db.close();
           response.end(JSON.stringify({'_id': wordId}));
+          doDbBackup();
         });
       });
     });
