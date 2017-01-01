@@ -1,3 +1,5 @@
-Learning vocabulary app
+# Web app for learning German vocabulary
 
-npm start is all you need to have it running :)
+1. _npm install_
+2. _npm start_
+3. Enjoy learning :)
