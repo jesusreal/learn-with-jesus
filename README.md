@@ -1,5 +1,9 @@
 # Web app for learning German vocabulary
 
-1. _npm install_
-2. _npm start_
-3. Enjoy learning :)
+0. Download and install [Node.js v7+](https://nodejs.org/en/download/)
+1. Open your terminal window and execute these two commands:
+```sh
+_npm install_
+ _npm start_
+'''
+2. Enjoy learning :)
