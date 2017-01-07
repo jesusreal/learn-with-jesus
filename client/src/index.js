@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import newWords from './new-words';
 
+
 // import ReactDOMServer from 'react-dom/server'; //for server-side rendering
 
 import MainComponent from './components/main-component';
@@ -20,6 +21,7 @@ export class Page extends React.Component {
 setTimeout(function() {
   // console.info(ReactDOMServer.renderToString(<Page/>)); // for server-side rendering
   if(typeof window !== 'undefined') {
+    require('./css/index.css');
     ReactDOM.render(<Page/>, document.getElementById('app'));
   }
 }, 80);

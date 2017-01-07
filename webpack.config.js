@@ -12,9 +12,9 @@ const PATHS = {
 
 
 const config = {
-  entry: {
-    app: PATHS.app,
-    vendors: Object.keys(pkg.dependencies)
+    entry: {
+        app: PATHS.app,
+        vendors: Object.keys(pkg.dependencies)
     },
 
     output: {
@@ -23,6 +23,7 @@ const config = {
     },
 
     plugins: [
+        // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.bundle.js'),
         new webpack.HotModuleReplacementPlugin({
           multiStep: true
         })
@@ -56,7 +57,12 @@ const config = {
                 query: {presets:['react', 'es2015']},
                 include: [PATHS.app]
             },
-            {test: /\.json$/, loader: "json-loader"}
+            {test: /\.json$/, loader: "json-loader"},
+            {
+              test: /\.css/,
+              include: [PATHS.app],
+              loader: 'style!css'
+            }
         ]
     },
 };

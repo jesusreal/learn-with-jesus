@@ -5,15 +5,6 @@ body {
   width: 100%;
 }
 
-// #app * {
-//   z-index: 9999;
-//   position: relative;
-// }
-
-// #app {
-//   background-color: white;
-// }
-
 .block {
   padding: 1.5em 0;
 }
@@ -181,7 +172,3 @@ button.disabled {
 #add-word-btn {
   background-color: #364F6B;
 }
-
-
-// Gestionar eventos como focus, click, etc con estilos
-
