@@ -37,6 +37,12 @@ module.exports = {
     wordsList
       .expect.element('@lastTranslation').text.not.equal('Car');
 
+    client.refresh();
+
+    homepage.section.wordsGroups.waitForVisibleAndClick('@btnStep0');
+    wordsList
+      .expect.element('@lastTranslation').text.not.equal('Car');
+
     client.end();
   },
 
