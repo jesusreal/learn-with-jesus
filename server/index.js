@@ -18,9 +18,9 @@ const app = express();
 const mapWordForFrontend = (word) => {
   delete word.userId;
   delete word.step;
-  word.title = word.word || word.infinitive || word.singular;
-  return word;
+  return Object.assign({}, word, {title: word.word || word.infinitive || word.singular});
 }
+
 
 const doDbBackup = () => {
   MongoClient.connect(DB_URL, (err, db) => {
@@ -53,12 +53,13 @@ app.get('/words', (request, response) => {
   response.writeHead(200, HEADER_OPTIONS);
   MongoClient.connect(DB_URL, (err, db) => {
     db.collection('words')
-      .find({userId: USER_ID, step: Number(request.query.step)})
+      .find(
+        {userId: USER_ID, step: Number(request.query.step)},
+        {userId: false, step: false}
+      )
       .toArray((err, result) => {
         db.close();
-        response.end(JSON.stringify(
-          result.map(mapWordForFrontend)
-        ));
+        response.end(JSON.stringify(result.map(mapWordForFrontend)));
       });
   });
 });
