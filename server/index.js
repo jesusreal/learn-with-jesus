@@ -52,9 +52,12 @@ app.options('/word', (request, response) => {
 app.get('/words', (request, response) => {
   response.writeHead(200, HEADER_OPTIONS);
   MongoClient.connect(DB_URL, (err, db) => {
+    const searchObj = request.query.step ?
+      {userId: USER_ID, step: Number(request.query.step)} :
+      {userId: USER_ID}
     db.collection('words')
       .find(
-        {userId: USER_ID, step: Number(request.query.step)},
+        searchObj,
         {userId: false, step: false}
       )
       .toArray((err, result) => {
@@ -63,7 +66,6 @@ app.get('/words', (request, response) => {
       });
   });
 });
-
 
 app.post('/word', (request, response) => {
   request.on('data', (data) => {

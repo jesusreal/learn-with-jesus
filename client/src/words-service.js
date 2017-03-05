@@ -2,7 +2,7 @@ import {SERVER_URL} from './constants';
 import ApiService from './api-service';
 
 export default {
-  getAllForList(step){
+  getAll(step){
     return ApiService.get(`${SERVER_URL}/words`, {step})
   },
 

@@ -77,7 +77,7 @@ export default class NewWordComponent extends React.Component {
         <form name={this.state.selectedWordType + '-form'} onSubmit={this.addWord}>
           <div id="add-word-menu" className="block">
             <h6>Add a new word:</h6>
-            <select autoFocus="autofocus" onChange={this.onWordTypeChange}>
+            <select onChange={this.onWordTypeChange}>
               <option value="name">Name</option>
               <option value="verb">Verb</option>
               <option value="other">Other</option>
@@ -100,7 +100,7 @@ export default class NewWordComponent extends React.Component {
               }
             </div>
           )}
-          <button type="submit" id="add-word-btn" autoFocus="autofocus">
+          <button type="submit" id="add-word-btn">
             Add word
           </button>
         </form>

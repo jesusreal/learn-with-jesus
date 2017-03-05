@@ -1,6 +1,7 @@
 import React from 'react';
 import WordsSvc from '../words-service';
 import {WORDS_LISTS_BUTTONS} from './../constants';
+import GameComponent from './game/game-component';
 import NewWordComponent from './new-word/new-word-component';
 import WordCardComponent from './word-card/word-card-component'
 
@@ -11,13 +12,17 @@ export default class MainComponent extends React.Component {
 
     this.state = {
       words: [],
+      allWords: [],
       listVisible: false,
       lastListDisplayed: null
     };
 
+    this.getAllWords = this.getAllWords.bind(this);
     this.onListBtnClicked = this.onListBtnClicked.bind(this);
     this.onWordAdded = this.onWordAdded.bind(this);
     this.onWordRemoved = this.onWordRemoved.bind(this);
+
+    this.getAllWords();
   }
 
   onWordAdded(word) {
@@ -32,6 +37,13 @@ export default class MainComponent extends React.Component {
     this.setState({words: updatedWords});
   }
 
+  getAllWords() {
+    // Use first list until we have business logic for lists management
+    const list = 0;
+    return WordsSvc.getAll(list)
+      .then((allWords) => { this.setState({allWords}); });
+  }
+
   onListBtnClicked(event) {
     const wordsList = Number(
       event.target.id
@@ -41,7 +53,7 @@ export default class MainComponent extends React.Component {
 
     new Promise((resolve) => {
       if(!this.state.listVisible || this.state.lastListDisplayed !== wordsList) {
-        WordsSvc.getAllForList(wordsList)
+        WordsSvc.getAll(wordsList)
           .then((words) => {
             this.setState({words});
             resolve();
@@ -64,6 +76,9 @@ export default class MainComponent extends React.Component {
   render() {
     return (
       <div>
+        <div id="game" className="block">
+          <GameComponent words={this.state.allWords}/>
+        </div>
         <div id="words-groups" className="block">
           {
             WORDS_LISTS_BUTTONS.map((btn, index) =>
@@ -71,7 +86,7 @@ export default class MainComponent extends React.Component {
             )
           }
         </div>
-        <div id="words-list" className={'block ' + ((this.state.listVisible) ? 'visible' : '')}>
+        <div id="words-list" className={'block ' + ((this.state.listVisible) ? '' : 'hide')}>
           {this.state.words.map((word, index) =>
               <WordCardComponent key={index} word={word} onWordRemovedFn={this.onWordRemoved}/>
           )}

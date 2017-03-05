@@ -3,6 +3,7 @@ body {
   max-width: 720px;
   text-align: center;
   width: 100%;
+  background-color: #C5C5C5
 }
 
 .block {
@@ -21,39 +22,68 @@ input {
   display: block;
   text-align: center;
   margin: 10px auto;
+  background-color: #C5C5C5;
 }
 
 #words-groups {
   // position: relative;
-  background-color: white;
+  // background-color: white;
   padding: 2em 0;
 }
 
 #words-list {
-  background-color: #F5F5F5;
-  display: none;
+  // background-color: #F5F5F5;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
   // position: relative;
   // margin-top: -250px;
   // transition: margin-top 5s;
   // z-index: 1;
 }
 
-#words-list.visible {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.hide, #words-list.hide {
+  display: none;
 }
 
+#words-list.game {
+  flex-direction: column;
+}
+
+#words-list.game .word-keys {
+  align-items: center
+}
+
+#game-progress {
+  align-self: flex-end;
+  height: auto;
+  padding: 20px;
+}
+
+#game-progress p {
+  margin: 0;
+}
+
+#game-progress p .index {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#game-progress.block {
+  margin: 0 20px;
+}
 
 .word-card {
   border-radius: 0.2em;
   border: 1px solid black;
   height: 200px;
-  background-color: #F5F5F5;
-  color: #EEEEEE;
+  // background-color: #F5F5F5;
+  color: #E5E5E5;
   display: flex;
   flex-basis: 80%;
-  margin: 20px 0px;
+  flex-grow: 1;
+  // margin: 20px 0px;
 }
 
 @media screen and (min-width: 480px) {
@@ -70,22 +100,24 @@ input {
 
 
 @media screen and (min-width: 720px) {
-  .word-card {
+  .word-card, #game-progress {
     margin: 20px;
     flex-basis: auto;
   }
 }
 
 .word-card.name {
-  background-color: #364F6B;
+  background-color: #6C1115;
+  //background-color: #FC5185
 }
 
 .word-card.verb {
-  background-color: #3FC1C9;
+  background-color: #364F6B;
 }
 
 .word-card.other {
-  background-color: #FC5185;
+  background-color: #3F816B;
+  //background-color: #3FC1C9
 }
 
 .word-param {
@@ -135,7 +167,7 @@ select {
     margin-top: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #f1f1f1;
+    background-color: #F1F1F1;
     outline: none;
     -webkit-transition: color 2s linear 1s;
     transition: color 2s linear 1s;
@@ -159,7 +191,7 @@ button {
   width: 10em;
   margin: 1em auto;
   padding: 1em 2em;
-  color: white;
+  color: #E5E5E5;
   background-color: #378573;
   border-radius: 5px;
   border: none;
