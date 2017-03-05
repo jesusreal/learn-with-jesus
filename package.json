@@ -58,7 +58,7 @@
     "mongodb": "^2.2.16",
     "normalize.css": "^5.0.0",
     "popsicle": "^9.0.0",
-    "react": "^15.0.x",
+    "react": "^15.4.x",
     "react-dom": "^15.0.x",
     "express": "^4.14.0"
   }

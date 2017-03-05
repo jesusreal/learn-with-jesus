@@ -16,7 +16,7 @@ export const ADD_WORD_FORMS = {
       html: null
     },
     genre: {
-      text:'Genre',
+      text:'Genus',
       inputType:'select'
     },
     plural: {
@@ -25,41 +25,46 @@ export const ADD_WORD_FORMS = {
       html: null
     },
     translation: {
-      text:'Translation',
+      text:'Übersetzung',
       inputType:'text',
       html: null
     },
   },
   verb: {
     infinitive: {
-      text: 'Infinitive',
+      text: 'Infinitiv',
+      inputType:'text',
+      html: null
+    },
+    cases: {
+      text: 'Fälle',
       inputType:'text',
       html: null
     },
     past: {
-      text: 'Past',
+      text: 'Präteritum (3. Pers. Sg)',
       inputType:'text',
       html: null
     },
     perfect: {
-      text: 'Perfect',
+      text: 'Partizip Perfect',
       inputType:'text',
       html: null
     },
     translation: {
-      text:'Translation',
+      text:'Übersetzung',
       inputType:'text',
       html: null
     },
   },
   other: {
     word: {
-      text: 'Word',
+      text: 'Wort',
       inputType:'text',
       html: null
     },
     translation: {
-      text:'Translation',
+      text:'Übersetzung',
       inputType:'text',
       html: null
     },

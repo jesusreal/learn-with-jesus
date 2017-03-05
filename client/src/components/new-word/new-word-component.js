@@ -60,6 +60,7 @@ export default class NewWordComponent extends React.Component {
   }
 
   updateField({target}) {
+      console.log('target', target);
     const wordData = this.state.formsInput[this.state.selectedWordType];
     this.updateWordObj(
       wordData.type,
@@ -96,7 +97,7 @@ export default class NewWordComponent extends React.Component {
                     <option value="das">Das</option>
                   </select>
                 :
-                  <input required name={param} value={formInput[param] || ''} onChange={this.updateField} type={formData[param].inputType}/>
+                  <input required name={param} value={formInput[param] || ''} onChange={this.updateField} onBlur={this.updateField} type={formData[param].inputType}/>
               }
             </div>
           )}
