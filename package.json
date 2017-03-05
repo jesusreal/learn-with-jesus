@@ -11,10 +11,11 @@
     "lint": "eslint --format table --color client/src/ server; exit 0",
     "build:html": "cp client/src/index.html client/dist",
     "build:css": "mkdir -p client/dist/css/; cp node_modules/normalize.css/normalize.css client/dist/css; cp client/src/css/reset.css client/dist/css",
-    "build:img": "cp -R client/src/img client/dist",
+    "build:img": "cp -R ./client/src/img ./client/dist",
     "build": "npm run build:html; npm run build:css; npm run build:img",
     "build:watch": "npm run build; chokidar 'client/src/img' 'client/src/css' 'client/src/index.html' -c 'npm run build'",
     "start": "rm -rf client/dist && mkdir -p client/dist && concurrently \"npm run build:watch\" \"'npm run dev'\" \"npm run backend\" \"npm run db\"",
+    "start-view": "rm -rf ./client/dist && mkdir -p ./client/dist && npm run build",
     "test": "mocha client/src --recursive --reporter list --compilers js:babel-register --colors",
     "test:watch": "npm test -- -w",
     "test-e2e": "'./node_modules/nightwatch/bin/nightwatch' --config './client/e2e-tests/nightwatch.config.json' --tag e2e",
@@ -42,13 +43,10 @@
     "eslint": "^3.3.0",
     "eslint-config-eslint": "^3.0.0",
     "eslint-plugin-react": "^5.1.1",
-    "express": "^4.14.0",
     "hamjest": "^2.13.0",
     "lite-server": "^2.2.2",
     "mocha": "^2.4.5",
-    "mongodb": "^2.2.16",
     "nightwatch": "^0.x",
-    "normalize.css": "^5.0.0",
     "selenium-server-standalone-jar": "3.0.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.2",
@@ -57,8 +55,11 @@
   },
   "dependencies": {
     "jquery": "^3.0.0",
+    "mongodb": "^2.2.16",
+    "normalize.css": "^5.0.0",
     "popsicle": "^9.0.0",
     "react": "^15.0.x",
-    "react-dom": "^15.0.x"
+    "react-dom": "^15.0.x",
+    "express": "^4.14.0"
   }
 }

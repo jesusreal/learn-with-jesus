@@ -92,6 +92,11 @@ input {
   line-height: 1.5em;
 }
 
+.word-param .content {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
 .word-key {
   font-weight: 600;
 }
