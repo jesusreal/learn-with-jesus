@@ -6,7 +6,7 @@ export default class GameComponent extends React.Component {
     super(props);
 
     this.state = {
-      totalWords: 5,
+      totalWords: 10,
       index: 0,
       step: 0,
       playing: false,
@@ -87,7 +87,8 @@ export default class GameComponent extends React.Component {
               {
                 Object.keys(this.state.currentWord)
                   .filter((key) => !constants.WORD_FIELDS_NOT_TO_SHOW.includes(key))
-                  .map((key) =>
+                  .filter((key) => this.state.currentWord[key])
+                  .map((key, value) =>
                     <div className={'word-param ' + key + ' ' + ((this.state.step !== 1) ? 'hide' : '')} key={key}>
                       <span className="key">{key}:&nbsp;</span>
                       <span className="content">{this.state.currentWord[key]}</span>
