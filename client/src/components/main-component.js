@@ -1,6 +1,6 @@
 import React from 'react';
 import WordsSvc from '../words-service';
-import {WORDS_LISTS_BUTTONS} from './../constants';
+import {WORDS_LISTS_METADATA} from './../constants';
 import GameComponent from './game/game-component';
 import NewWordComponent from './new-word/new-word-component';
 import WordCardComponent from './word-card/word-card-component'
@@ -81,7 +81,7 @@ export default class MainComponent extends React.Component {
         </div>
         <div id="words-groups" className="block">
           {
-            WORDS_LISTS_BUTTONS.map((btn, index) =>
+            WORDS_LISTS_METADATA.map((btn, index) =>
               <button type="button" id={'step' + btn.apiStepId + '-words-btn'} onClick={this.onListBtnClicked} key={index}>{btn.text}</button>
             )
           }

@@ -1,6 +1,6 @@
 import React from 'react';
 import WordsSvc from '../../words-service';
-import {ADD_WORD_FORMS} from './../../constants';
+import {WORDS_METADATA, WORD_TYPES} from './../../constants';
 import $ from 'jquery';
 
 export default class NewWordComponent extends React.Component {
@@ -9,9 +9,9 @@ export default class NewWordComponent extends React.Component {
 
     this.state = {
       selectedWordType: 'name',
-      formsInput: Object.keys(ADD_WORD_FORMS)
-        .reduce((acc, wordType) => {
-          acc[wordType] = this.getResetWordObj(wordType);
+      formsInput: WORDS_METADATA
+        .reduce((acc, wordMetadata) => {
+          acc[wordMetadata.type] = this.getResetWordObj(wordMetadata.type);
           return acc;
         }, {})
     };
@@ -24,10 +24,11 @@ export default class NewWordComponent extends React.Component {
   getResetWordObj(type) {
     return Object.assign(
       {type},
-      Object.keys(ADD_WORD_FORMS[type]).reduce((acc, param) => {
-        acc[param] = (param === 'genre') ? 'der' : null;
-        return acc
-      }, {})
+      WORDS_METADATA.find((obj) => obj.type === type).fields
+        .reduce((acc, field) => {
+          acc[field.id] = (field.id === 'genre') ? 'der' : null;
+          return acc
+        }, {})
     )
   }
 
@@ -69,7 +70,7 @@ export default class NewWordComponent extends React.Component {
 
 
   render() {
-    const formData = ADD_WORD_FORMS[this.state.selectedWordType];
+    const formData = WORDS_METADATA.find((obj) => obj.type === this.state.selectedWordType).fields;
     const formInput = this.state.formsInput[this.state.selectedWordType];
 
     return (
@@ -78,25 +79,30 @@ export default class NewWordComponent extends React.Component {
           <div id="add-word-menu" className="block">
             <h6>Add a new word:</h6>
             <select onChange={this.onWordTypeChange}>
-              <option value="name">Name</option>
-              <option value="verb">Verb</option>
-              <option value="other">Other</option>
+              {
+                Object.keys(WORD_TYPES).map((type) =>
+                  <option value={WORD_TYPES[type]} key={WORD_TYPES[type]}>
+                    {WORD_TYPES[type][0].toUpperCase() + WORD_TYPES[type].substr(1)}
+                  </option>
+                )
+              }
             </select>
           </div>
-          {Object.keys(formData).map((param, i) =>
+          {formData.map((param, i) =>
             <div className="word-param-input" key={'word-type-form-elem' + i}>
-              <label htmlFor={param}>
-                {formData[param].text}
+              <label htmlFor={param.id}>
+                {param.text}
               </label>
               {
-                param === 'genre' ?
-                  <select required name={param} onChange={this.updateField}>
+                param.id === 'genre' ?
+                  <select required name={param.id} onChange={this.updateField}>
                     <option value="der">Der</option>
                     <option value="die">Die</option>
                     <option value="das">Das</option>
                   </select>
                 :
-                  <input required name={param} value={formInput[param] || ''} onChange={this.updateField} onBlur={this.updateField} type={formData[param].inputType}/>
+                <input required name={param.id} value={formInput[param.id] || ''} 
+                    onChange={this.updateField} onBlur={this.updateField} type={param.inputType}/>
               }
             </div>
           )}

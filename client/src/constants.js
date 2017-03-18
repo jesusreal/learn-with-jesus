@@ -7,71 +7,91 @@ export const WORD_TYPES = {
   verb: 'verb',
   other: 'other',
 };
-export const WORDS_LISTS_BUTTONS = [
+export const WORDS_LISTS_METADATA = [
   {text: 'Daily', apiStepId: 0},
   {text: 'Weekly', apiStepId: 1},
   {text: 'Monthly', apiStepId: 2},
 ];
-export const ADD_WORD_FORMS = {
+export const WORDS_METADATA = [
   // Field name and text. Think about translations
-  [WORD_TYPES.name]: {
-    singular: {
-      text:'Singular',
-      inputType:'text',
-      html: null
-    },
-    genre: {
-      text:'Genus',
-      inputType:'select'
-    },
-    plural: {
-      text:'Plural',
-      inputType:'text',
-      html: null
-    },
-    translation: {
-      text:'Übersetzung',
-      inputType:'text',
-      html: null
-    },
+  {
+    type: WORD_TYPES.name,
+    fields: [
+      {
+        id: 'singular',
+        text:'Singular',
+        inputType:'text',
+        html: null
+      },
+      {
+        id: 'genre',
+        text:'Genus',
+        inputType:'select'
+      },
+      {
+        id: 'plural',
+        text:'Plural',
+        inputType:'text',
+        html: null
+      },
+      {
+        id: 'translation',
+        text:'Übersetzung',
+        inputType:'text',
+        html: null
+      }
+    ]
   },
-  [WORD_TYPES.verb]: {
-    infinitive: {
-      text: 'Infinitiv',
-      inputType:'text',
-      html: null
-    },
-    cases: {
-      text: 'Fälle',
-      inputType:'text',
-      html: null
-    },
-    past: {
-      text: 'Präteritum (3. Pers. Sg)',
-      inputType:'text',
-      html: null
-    },
-    perfect: {
-      text: 'Partizip Perfect',
-      inputType:'text',
-      html: null
-    },
-    translation: {
-      text:'Übersetzung',
-      inputType:'text',
-      html: null
-    },
+  {
+    type: WORD_TYPES.verb,
+    fields: [
+      {
+        id: 'infinitive',
+        text: 'Infinitiv',
+        inputType:'text',
+        html: null
+      },
+      {
+        id: 'cases',
+        text: 'Fälle',
+        inputType:'text',
+        html: null
+      },
+      {
+        id: 'past',
+        text: 'Präteritum (3. Pers. Sg)',
+        inputType:'text',
+        html: null
+      },
+      {
+        id: 'perfect',
+        text: 'Partizip Perfect',
+        inputType:'text',
+        html: null
+      },
+      {
+        id: 'translation',
+        text:'Übersetzung',
+        inputType:'text',
+        html: null
+      }
+    ]
   },
-  [WORD_TYPES.other]: {
-    word: {
-      text: 'Wort',
-      inputType:'text',
-      html: null
-    },
-    translation: {
-      text:'Übersetzung',
-      inputType:'text',
-      html: null
-    },
+  {
+    type: WORD_TYPES.other,
+    fields: [
+      {
+        id: 'word',
+        text: 'Wort',
+        inputType:'text',
+        html: null
+      },
+      {
+        id: 'translation',
+        text:'Übersetzung',
+        inputType:'text',
+        html: null
+      }
+    ]
   }
-};
+];

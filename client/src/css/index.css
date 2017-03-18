@@ -51,7 +51,7 @@ input {
   flex-direction: column;
 }
 
-#words-list.game .word-keys {
+#words-list .word-title .word-keys {
   align-items: center
 }
 

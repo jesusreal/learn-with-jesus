@@ -25,32 +25,33 @@ export default class WordCardComponent extends React.Component {
 
   getRowsToDisplay() {
     let word = Object.assign({}, this.props.word);
-    Object.keys(constants.ADD_WORD_FORMS[word.type || 'other'])
-      .filter((key) => !constants.WORD_FIELDS_NOT_TO_SHOW.includes(key))
-      .forEach((key) => word[key] = word[key] || '');
-    let result;
+    if(!word.type) { return []; }
+    let rows;
+    constants.WORDS_METADATA.find((w) => w.type === word.type).fields
+      .filter((field) => !constants.WORD_FIELDS_NOT_TO_SHOW.includes(field.id))
+      .forEach((field) => { word[field.id] = word[field.id] || '' });
     switch(word.type) {
       case constants.WORD_TYPES.name:
-        result = [
+        rows = [
           `${word.genre} ${word.singular}, Pl.: ${word.plural}`,
           `${word.translation}`
         ];
         break;
       case(constants.WORD_TYPES.verb):
-        result = [
+        rows = [
           `${word.cases} ${word.infinitive}`, 
           `${word.translation}`,
           `${word.past}${word.perfect ? ', ' + word.perfect : ''}`,
         ];
         break;
       default:
-        result = [
+        rows = [
           `${word.word}`, 
           `${word.translation}`
         ];
         break;
     }
-    return result.filter((r) => r);
+    return rows.filter((r) => r);
   }
  
   // edit() {

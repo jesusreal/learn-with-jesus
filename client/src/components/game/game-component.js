@@ -78,7 +78,7 @@ export default class GameComponent extends React.Component {
               <span>{this.state.gameWords.length}</span>
             </p>
           </div>
-          <div className={'word-card ' + this.state.currentWord.type + ((this.state.step === 0) ? '' : ' hide')}>
+          <div className={'word-card word-title ' + this.state.currentWord.type + ((this.state.step === 0) ? '' : ' hide')}>
             <div className="word-keys" onClick={this.onCardClicked}>
               <div className={'word-param ' + this.state.currentWord.title}>
                 <span className="content">{this.state.currentWord.title}</span>
