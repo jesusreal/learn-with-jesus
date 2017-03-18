@@ -2,6 +2,11 @@ import React from 'react';
 
 export const SERVER_URL = 'http://127.0.0.1:3333';
 export const WORD_FIELDS_NOT_TO_SHOW = ['_id', 'type', 'title'];
+export const WORD_TYPES = {
+  name: 'name',
+  verb: 'verb',
+  other: 'other',
+};
 export const WORDS_LISTS_BUTTONS = [
   {text: 'Daily', apiStepId: 0},
   {text: 'Weekly', apiStepId: 1},
@@ -9,7 +14,7 @@ export const WORDS_LISTS_BUTTONS = [
 ];
 export const ADD_WORD_FORMS = {
   // Field name and text. Think about translations
-  name: {
+  [WORD_TYPES.name]: {
     singular: {
       text:'Singular',
       inputType:'text',
@@ -30,7 +35,7 @@ export const ADD_WORD_FORMS = {
       html: null
     },
   },
-  verb: {
+  [WORD_TYPES.verb]: {
     infinitive: {
       text: 'Infinitiv',
       inputType:'text',
@@ -57,7 +62,7 @@ export const ADD_WORD_FORMS = {
       html: null
     },
   },
-  other: {
+  [WORD_TYPES.other]: {
     word: {
       text: 'Wort',
       inputType:'text',

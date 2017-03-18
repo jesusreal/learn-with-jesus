@@ -1,5 +1,6 @@
 import React from 'react';
 import * as constants from './../../constants';
+import WordCardComponent from './../word-card/word-card-component'
 
 export default class GameComponent extends React.Component {
   constructor(props) {
@@ -77,25 +78,15 @@ export default class GameComponent extends React.Component {
               <span>{this.state.gameWords.length}</span>
             </p>
           </div>
-          <div className={'word-card ' + this.state.currentWord.type}>
-            <div className={'word-keys ' + ((this.state.step === 0) ? '' : 'hide')} onClick={this.onCardClicked}>
+          <div className={'word-card ' + this.state.currentWord.type + ((this.state.step === 0) ? '' : ' hide')}>
+            <div className="word-keys" onClick={this.onCardClicked}>
               <div className={'word-param ' + this.state.currentWord.title}>
                 <span className="content">{this.state.currentWord.title}</span>
               </div>
             </div>
-            <div className={'word-keys ' + ((this.state.step === 1) ? '' : 'hide')} onClick={this.onCardClicked}>
-              {
-                Object.keys(this.state.currentWord)
-                  .filter((key) => !constants.WORD_FIELDS_NOT_TO_SHOW.includes(key))
-                  .filter((key) => this.state.currentWord[key])
-                  .map((key, value) =>
-                    <div className={'word-param ' + key + ' ' + ((this.state.step !== 1) ? 'hide' : '')} key={key}>
-                      <span className="key">{key}:&nbsp;</span>
-                      <span className="content">{this.state.currentWord[key]}</span>
-                    </div>
-                  )
-              }
-            </div>
+          </div>
+          <div className={(this.state.step === 1) ? '' : ' hide'} onClick={this.onCardClicked}>
+            <WordCardComponent word={this.state.currentWord}/>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ export default class WordCardComponent extends React.Component {
   constructor(props) {
     super(props);
     this.deleteWord = this.deleteWord.bind(this);
+    this.getRowsToDisplay = this.getRowsToDisplay.bind(this);
     this.state = {
       wordToShow: {}
     }
@@ -22,6 +23,36 @@ export default class WordCardComponent extends React.Component {
     }
   }
 
+  getRowsToDisplay() {
+    let word = Object.assign({}, this.props.word);
+    Object.keys(constants.ADD_WORD_FORMS[word.type || 'other'])
+      .filter((key) => !constants.WORD_FIELDS_NOT_TO_SHOW.includes(key))
+      .forEach((key) => word[key] = word[key] || '');
+    let result;
+    switch(word.type) {
+      case constants.WORD_TYPES.name:
+        result = [
+          `${word.genre} ${word.singular}, Pl.: ${word.plural}`,
+          `${word.translation}`
+        ];
+        break;
+      case(constants.WORD_TYPES.verb):
+        result = [
+          `${word.cases} ${word.infinitive}`, 
+          `${word.translation}`,
+          `${word.past}${word.perfect ? ', ' + word.perfect : ''}`,
+        ];
+        break;
+      default:
+        result = [
+          `${word.word}`, 
+          `${word.translation}`
+        ];
+        break;
+    }
+    return result.filter((r) => r);
+  }
+ 
   // edit() {
   //   // New component, as content type (read to write) and buttons change?
   //   // Then, parent component should decide which component to render
@@ -32,15 +63,11 @@ export default class WordCardComponent extends React.Component {
       <div className={'word-card ' + this.props.word.type}>
         <div className="word-keys">
           {
-            Object.keys(this.props.word)
-              .filter((key) => !constants.WORD_FIELDS_NOT_TO_SHOW.includes(key))
-              .filter((key) => this.props.word[key])
-              .map((key) =>
-                <div className={'word-param ' + key} key={key}>
-                  <span className="key">{key}:&nbsp;</span>
-                  <span className="content">{this.props.word[key]}</span>
-                </div>
-              )
+            this.getRowsToDisplay().map((value, index) =>
+              <div className={'word-param '} key={index}>
+                <span className="content">{value}</span>
+              </div>
+            )
           }
         </div>
         <div className="word-actions">

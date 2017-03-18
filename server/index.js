@@ -29,7 +29,7 @@ const doDbBackup = () => {
       .toArray((err, result) => {
         db.close();
         fs.writeFile(
-          './server/db-backup/words.txt',
+          './server/db-backup/words.json',
           JSON.stringify(result),
           (err) => {
             if(err) console.error('ERROR: DB backup failed');

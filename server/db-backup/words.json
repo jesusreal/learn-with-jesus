@@ -1,0 +1,736 @@
+[
+    {
+        "_id": "5866a478717820dcddef494e",
+        "userId": 1,
+        "type": "verb",
+        "step": 0,
+        "infinitive": "durchführen",
+        "past": "führte durch",
+        "perfect": "durchgeführt",
+        "translation": "ejecutar algo, realizar algo"
+    },
+    {
+        "_id": "5866a478717820dcddef494f",
+        "userId": 1,
+        "type": "verb",
+        "step": 0,
+        "infinitive": "anpreisen",
+        "translation": "recomendar, promocionar, promover",
+        "past": "pries an",
+        "perfect": "angepriesen"
+    },
+    {
+        "_id": "5866a478717820dcddef4950",
+        "userId": 1,
+        "type": "verb",
+        "step": 1,
+        "infinitive": "genießen",
+        "past": "genoss",
+        "perfect": "genossen",
+        "translation": "disfrutar de algo"
+    },
+    {
+        "_id": "5866a478717820dcddef4951",
+        "userId": 1,
+        "type": "other",
+        "step": 2,
+        "word": "schön",
+        "translation": "bonito"
+    },
+    {
+        "_id": "5870e26b3f0365698d5b816b",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Klarstellung",
+        "genre": "die",
+        "plural": "Klarstellungen",
+        "translation": "aclaración"
+    },
+    {
+        "_id": "589cb79beb8b7506efc28911",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "bescheinigen",
+        "past": "bescheinigte",
+        "perfect": "bescheinigt",
+        "translation": "certificar algo"
+    },
+    {
+        "_id": "589cb89deb8b7506efc28912",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "erwerben",
+        "past": "erwarb",
+        "perfect": "erworben",
+        "translation": "adquirir algo (etw Akk. erwerben)"
+    },
+    {
+        "_id": "589cbd2eeb8b7506efc28913",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "erscheinen",
+        "past": "erschien",
+        "perfect": "erschienen",
+        "translation": "persentarse, aparecer"
+    },
+    {
+        "_id": "589cbf30eb8b7506efc28915",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "heftig",
+        "translation": " con ímpetu, vehemente, contundente"
+    },
+    {
+        "_id": "589cc172eb8b7506efc28916",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Verwaltung",
+        "genre": "die",
+        "plural": "Verwaltungen",
+        "translation": "la administración"
+    },
+    {
+        "_id": "58a59d63cb0873d2c5af9c09",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "bezüglich, betreffend",
+        "translation": "Regarding"
+    },
+    {
+        "_id": "58bc6e3385ca3f7dbf990e9c",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "erleichtern (etw. akk.)",
+        "past": "erleichterte",
+        "perfect": "erleichtert",
+        "translation": "agilizar algo, facilitar algo"
+    },
+    {
+        "_id": "58bc710a85ca3f7dbf990e9d",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "aufreißen",
+        "cases": "",
+        "past": "riss auf",
+        "perfect": "ist aufgerissen",
+        "translation": "agrietarse"
+    },
+    {
+        "_id": "58bc720785ca3f7dbf990e9e",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "benachteiligen",
+        "cases": "jmdn./etw.",
+        "past": "benachteiligte",
+        "perfect": "hat benachteiligt",
+        "translation": "perjudicar algo/ a alguien"
+    },
+    {
+        "_id": "58bc731485ca3f7dbf990e9f",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "berücksichtigen",
+        "cases": "jmdn./etw.",
+        "past": "berücksichtigte",
+        "perfect": "berücksichtigt",
+        "translation": "tomar en cuenta algo/a alguien, considerar algo"
+    },
+    {
+        "_id": "58bc752b85ca3f7dbf990ea0",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "auseinandersetzen",
+        "cases": "sich mit etw. / sich mit imdm.",
+        "past": null,
+        "perfect": null,
+        "translation": "razonar con algo, enfrentarse con alguien"
+    },
+    {
+        "_id": "58bc759785ca3f7dbf990ea1",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "entsprechen",
+        "cases": "etw. (Dat.)",
+        "past": "entsprach",
+        "perfect": "entsprochen",
+        "translation": "corresponder con algo, obedecer a algo"
+    },
+    {
+        "_id": "58bc813d85ca3f7dbf990ea3",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "übergehen",
+        "cases": "jmdn./etw",
+        "past": "überging",
+        "perfect": "übergangen",
+        "translation": "pasar algo/a alguien por alto"
+    },
+    {
+        "_id": "58bc875b79b8068a59a71cc6",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "unterschätzen",
+        "cases": "jmdn./etw.",
+        "past": "unterschätzte",
+        "perfect": "unterschätzt",
+        "translation": "subvalorar o menospreciar algo/a alguien"
+    },
+    {
+        "_id": "58c1265979b8068a59a71cc7",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "Gerecht",
+        "translation": "justo, adecuado"
+    },
+    {
+        "_id": "58c1269c79b8068a59a71cc8",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Nachlass",
+        "genre": "der",
+        "plural": "Nachlässe",
+        "translation": "legado, bienes hereditarios"
+    },
+    {
+        "_id": "58c1288479b8068a59a71cc9",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "reibungslos",
+        "translation": "perfecto, sin dificultades"
+    },
+    {
+        "_id": "58c128c179b8068a59a71cca",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Alleingang",
+        "genre": "der",
+        "plural": "Alleingänge",
+        "translation": "jugada individual"
+    },
+    {
+        "_id": "58c128fe79b8068a59a71ccb",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "vorhanden sein",
+        "cases": "",
+        "past": "",
+        "perfect": null,
+        "translation": "estar disponible"
+    },
+    {
+        "_id": "58c425bc1bbe53820598da35",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "ausprägen",
+        "cases": "sich/etw.",
+        "past": "prägte aus",
+        "perfect": "ausgeprägt",
+        "translation": "marcarse algo, formar algo (capacidades)"
+    },
+    {
+        "_id": "58c4263e1bbe53820598da36",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "bereitstellen",
+        "cases": "etw.",
+        "past": "stellte bereit",
+        "perfect": "bereitgestellt",
+        "translation": "preparar algo, movilizar algo"
+    },
+    {
+        "_id": "58c426de1bbe53820598da37",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "betäuben",
+        "cases": "jmdn./etw.",
+        "past": "betäubte",
+        "perfect": "betäubt",
+        "translation": "entorpecer algo/a alguien, aturdir a alguien"
+    },
+    {
+        "_id": "58c427611bbe53820598da38",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "mittlerweile",
+        "translation": "mientras, entretanto"
+    },
+    {
+        "_id": "58c44b891bbe53820598da39",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "verwöhnen",
+        "cases": "jmdn./etw.",
+        "past": "verwöhnte",
+        "perfect": "werwöhnt",
+        "translation": "mimar alg/a alguien, malacostumbrar a alguien"
+    },
+    {
+        "_id": "58c44bf31bbe53820598da3a",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "abhärten",
+        "cases": "jmdn.",
+        "past": "härtete ab",
+        "perfect": "abgehärtet",
+        "translation": "endurecer a alguien"
+    },
+    {
+        "_id": "58c44c2d1bbe53820598da3b",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "annerkennen",
+        "cases": "jmdn./etw.",
+        "past": "erkannte an",
+        "perfect": "anerkannt",
+        "translation": "reconocer algo/a alguien"
+    },
+    {
+        "_id": "58c44c971bbe53820598da3c",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "erlösen",
+        "cases": "jmdn./etw. von etw. (Dat.)",
+        "past": "erlöste",
+        "perfect": "erlöst",
+        "translation": "librar a algo/a alguien de algo"
+    },
+    {
+        "_id": "58c44cf41bbe53820598da3d",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "anlegen",
+        "cases": "etw.",
+        "past": "legte an",
+        "perfect": "angelegt",
+        "translation": "invertir algo, aplicar algo, construir algo"
+    },
+    {
+        "_id": "58c44d3b1bbe53820598da3f",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "vorliegen",
+        "cases": "",
+        "past": "lag vor ",
+        "perfect": "vorgelegen",
+        "translation": "existir"
+    },
+    {
+        "_id": "58c44d761bbe53820598da40",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "einbeziehen",
+        "cases": "jmdn./etw.",
+        "past": "bezog ein",
+        "perfect": "einbezogen",
+        "translation": "incluir algo/a alguien"
+    },
+    {
+        "_id": "58c44db21bbe53820598da41",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "feststellen",
+        "cases": "etw.",
+        "past": "stellte fest",
+        "perfect": "festgestellt",
+        "translation": "notar, averiguar, darse cuenta de algo"
+    },
+    {
+        "_id": "58c44dd91bbe53820598da42",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "erheblich",
+        "translation": "considerable, considerablemente, cuantioso/a"
+    },
+    {
+        "_id": "58c44e201bbe53820598da43",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Kinn",
+        "genre": "das",
+        "plural": "Kinne",
+        "translation": "barbilla"
+    },
+    {
+        "_id": "58c44e8f1bbe53820598da44",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Nabel",
+        "genre": "der",
+        "plural": "Nabel",
+        "translation": "ombligo"
+    },
+    {
+        "_id": "58c44f0b1bbe53820598da45",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "beteiligen",
+        "cases": "sich and etw.",
+        "past": "",
+        "perfect": "",
+        "translation": "participar en algo"
+    },
+    {
+        "_id": "58c450dd1bbe53820598da46",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "behaftet",
+        "translation": "afectado, aquejado"
+    },
+    {
+        "_id": "58c47d121bbe53820598da47",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "lauern",
+        "cases": "auf jmdn./etw.",
+        "past": "",
+        "perfect": null,
+        "translation": "acechar algo/a alguien"
+    },
+    {
+        "_id": "58c47d591bbe53820598da48",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "einschleichen",
+        "cases": "sich",
+        "past": "schlich ein",
+        "perfect": "eingeschlichen",
+        "translation": "colarse"
+    },
+    {
+        "_id": "58c47d851bbe53820598da49",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "andauern",
+        "cases": "",
+        "past": "dauerte an",
+        "perfect": "angedauert",
+        "translation": "perdurar, subsistir, persistir"
+    },
+    {
+        "_id": "58c47dc91bbe53820598da4a",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "voreingenommen",
+        "translation": "prevenido/a"
+    },
+    {
+        "_id": "58c47de21bbe53820598da4b",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "pingelig",
+        "translation": "meticuloso, escrupuloso"
+    },
+    {
+        "_id": "58c47e3d1bbe53820598da4c",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "rauben",
+        "cases": "jmdm. etw.",
+        "past": "raubte",
+        "perfect": "geraubt",
+        "translation": "robar algo (a alguien)"
+    },
+    {
+        "_id": "58c47e691bbe53820598da4d",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "entstehen",
+        "cases": "",
+        "past": "enstand",
+        "perfect": "entstanden",
+        "translation": "surgir, originarse, formarse"
+    },
+    {
+        "_id": "58c47eae1bbe53820598da4e",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "ersticken",
+        "cases": "etw. in Keim ersticken",
+        "past": "",
+        "perfect": "",
+        "translation": "segar algo en flor, estrangular algo"
+    },
+    {
+        "_id": "58c47f1a1bbe53820598da4f",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "schrauben",
+        "cases": "etw. in der Höhe schrauben",
+        "past": "",
+        "perfect": "",
+        "translation": "subir algo (precios, exigencias)"
+    },
+    {
+        "_id": "58c47f6c1bbe53820598da50",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "beweisen",
+        "cases": "etw.",
+        "past": "bewies",
+        "perfect": "bewiesen",
+        "translation": "demostrar, justificar algo"
+    },
+    {
+        "_id": "58c47f9c1bbe53820598da51",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "belegen",
+        "cases": "etw.",
+        "past": "belegte",
+        "perfect": "belegt",
+        "translation": "cubrir algo, documentar algo, demostrar algo"
+    },
+    {
+        "_id": "58c480081bbe53820598da53",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "sehnen",
+        "cases": "sich nach jmdm./etw.",
+        "past": null,
+        "perfect": null,
+        "translation": "añorar algo/a alguien, anhelar algo"
+    },
+    {
+        "_id": "58caf46027001ef871e73224",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "ausschließlich",
+        "translation": "exclusivamente, únicamente"
+    },
+    {
+        "_id": "58caf4dd27001ef871e73225",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "erobern",
+        "cases": "jmdn./etw.",
+        "past": "eroberte",
+        "perfect": "erobert",
+        "translation": "conquistar algo/a alguien"
+    },
+    {
+        "_id": "58cb02a127001ef871e73226",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "dauern",
+        "cases": "",
+        "past": "dauerte",
+        "perfect": "gedauert",
+        "translation": "tardar, llevar tiempo, durar, perdurar"
+    },
+    {
+        "_id": "58cb032527001ef871e73227",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "vervielfachen",
+        "cases": "sich/etw.",
+        "past": "vervierfachte",
+        "perfect": "vervielfacht",
+        "translation": "multiplicarse, multiplicar algo"
+    },
+    {
+        "_id": "58cb036227001ef871e73228",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "regelrecht",
+        "translation": "normal, verdadero, conforme a las reglas"
+    },
+    {
+        "_id": "58cb03bc27001ef871e7322b",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Pilger",
+        "genre": "der",
+        "plural": "Pilgerin",
+        "translation": "peregrino/a"
+    },
+    {
+        "_id": "58cb079327001ef871e7322c",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "vergehen",
+        "cases": "",
+        "past": "verging",
+        "perfect": "vergangen",
+        "translation": "desvanecerse"
+    },
+    {
+        "_id": "58cc678f9725ae0e7523c329",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "zügig",
+        "translation": "rápido, sin dificultad, a buen paso"
+    },
+    {
+        "_id": "58cc68ce9725ae0e7523c32a",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "nachgehen",
+        "cases": "jmdm./etw.",
+        "past": "ging nach",
+        "perfect": "nachgegangen",
+        "translation": "seguir algo/a alguien"
+    },
+    {
+        "_id": "58cc69bb9725ae0e7523c32b",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Sehnsucht",
+        "genre": "die",
+        "plural": "Sehnsüchte",
+        "translation": "anhelo, ansia, nostalgia"
+    },
+    {
+        "_id": "58cc6acc9725ae0e7523c32c",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "bewegend",
+        "translation": "conmovedor, emocionante"
+    },
+    {
+        "_id": "58cce6959725ae0e7523c32d",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "ersehend",
+        "cases": "jmdn./etw.",
+        "past": "ersehnte",
+        "perfect": "ersehnt",
+        "translation": "anhelar algo, desear algo/a alguien"
+    },
+    {
+        "_id": "58cce78f9725ae0e7523c32e",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "ausleben",
+        "cases": "sich/etw.",
+        "past": "lebte aus",
+        "perfect": "ausgelebt",
+        "translation": "gozar de la vida, dar rienda suelta a algo"
+    },
+    {
+        "_id": "58cce87a9725ae0e7523c331",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "inhaltsleer",
+        "translation": "vacío, sin sentido"
+    },
+    {
+        "_id": "58cce8b69725ae0e7523c332",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Wurzel",
+        "genre": "die",
+        "plural": "Wurzeln",
+        "translation": "raíz"
+    },
+    {
+        "_id": "58cce9129725ae0e7523c333",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Gestaltung",
+        "genre": "die",
+        "plural": "Gestaltungen",
+        "translation": "diseño, configuración"
+    },
+    {
+        "_id": "58cce9439725ae0e7523c334",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "Anstatt etw. Gen.",
+        "translation": "en vez de, en lugar de"
+    },
+    {
+        "_id": "58cce9eb9725ae0e7523c335",
+        "userId": 1,
+        "step": 0,
+        "type": "verb",
+        "infinitive": "rasen",
+        "cases": "",
+        "past": "raste",
+        "perfect": "gerast",
+        "translation": "ir a toda velocidad, correr, enfurecerse"
+    },
+    {
+        "_id": "58ccea299725ae0e7523c336",
+        "userId": 1,
+        "step": 0,
+        "type": "other",
+        "word": "abseits",
+        "translation": "aparte, al margen"
+    },
+    {
+        "_id": "58ccea5b9725ae0e7523c337",
+        "userId": 1,
+        "step": 0,
+        "type": "name",
+        "singular": "Veröffentlichung",
+        "genre": "die",
+        "plural": "Veroffentlichungen",
+        "translation": "publicación, edición"
+    }
+]

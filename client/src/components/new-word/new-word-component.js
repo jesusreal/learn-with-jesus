@@ -60,7 +60,6 @@ export default class NewWordComponent extends React.Component {
   }
 
   updateField({target}) {
-      console.log('target', target);
     const wordData = this.state.formsInput[this.state.selectedWordType];
     this.updateWordObj(
       wordData.type,
