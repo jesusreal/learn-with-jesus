@@ -7,6 +7,7 @@ const validate = require('webpack-validator');
 
 const PATHS = {
   app: path.join(__dirname, 'client/src'),
+  nodeModules: path.join(__dirname, 'node_modules'),
   build: path.join(__dirname, 'client/dist')
 };
 
@@ -60,7 +61,7 @@ const config = {
             {test: /\.json$/, loader: "json-loader"},
             {
               test: /\.css/,
-              include: [PATHS.app],
+              include: [PATHS.app, PATHS.nodeModules + '/normalize.css'],
               loader: 'style!css'
             }
         ]

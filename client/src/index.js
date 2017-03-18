@@ -22,9 +22,10 @@ setTimeout(function() {
   // console.info(ReactDOMServer.renderToString(<Page/>)); // for server-side rendering
   if(typeof window !== 'undefined') {
     require('./css/index.css');
+    require('./css/word-card.css');
     ReactDOM.render(<Page/>, document.getElementById('app'));
   }
-}, 80);
+}, 0);
 
 // var ComponentFactory = React.createFactory(Page);
 // console.info('ComponentFactory ' , ComponentFactory());

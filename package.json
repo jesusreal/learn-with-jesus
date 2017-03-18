@@ -5,16 +5,14 @@
   "main": "index.js",
   "scripts": {
     "backend": "node server/index.js",
-    "db": "mongod --dbpath ./server/db/",
     "dev": "webpack-dev-server",
     "env": "env",
     "lint": "eslint --format table --color client/src/ server; exit 0",
     "build:html": "cp client/src/index.html client/dist",
-    "build:css": "mkdir -p client/dist/css/; cp node_modules/normalize.css/normalize.css client/dist/css; cp client/src/css/reset.css client/dist/css",
     "build:img": "cp -R ./client/src/img ./client/dist",
-    "build": "npm run build:html; npm run build:css; npm run build:img",
+    "build": "npm run build:html; npm run build:img",
     "build:watch": "npm run build; chokidar 'client/src/img' 'client/src/css' 'client/src/index.html' -c 'npm run build'",
-    "start": "rm -rf client/dist && mkdir -p client/dist && concurrently \"npm run build:watch\" \"'npm run dev'\" \"npm run backend\" \"npm run db\"",
+    "start": "rm -rf client/dist && mkdir -p client/dist && concurrently \"npm run build:watch\" \"'npm run dev'\" \"npm run backend\"",
     "start-view": "rm -rf ./client/dist && mkdir -p ./client/dist && npm run build",
     "test": "mocha client/src --recursive --reporter list --compilers js:babel-register --colors",
     "test:watch": "npm test -- -w",
@@ -51,15 +49,15 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.16.2",
-    "webpack-validator": "^2.2.9"
+    "webpack-validator": "^2.2.9",
+    "mongodb": "^2.2.16",
+    "express": "^4.14.0"
   },
   "dependencies": {
     "jquery": "^3.0.0",
-    "mongodb": "^2.2.16",
     "normalize.css": "^5.0.0",
     "popsicle": "^9.0.0",
     "react": "^15.4.x",
-    "react-dom": "^15.0.x",
-    "express": "^4.14.0"
+    "react-dom": "^15.0.x"
   }
 }

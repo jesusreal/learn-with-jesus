@@ -79,95 +79,14 @@ input {
 }
 
 
-.game .word-card {
-  flex-basis: 0;
+.word-param-input {
+  margin-bottom: 1em;
 }
 
-.word-card {
-  border-radius: 0.2em;
-  border: 1px solid black;
-  height: 200px;
-  // background-color: #F5F5F5;
-  color: #E5E5E5;
-  display: flex;
-  flex-basis: 80%;
-  flex-grow: 1;
-  margin: 20px 0px;
+.word-param-input:last-of-type {
+  margin-bottom: 2em;
 }
 
-@media screen and (min-width: 480px) {
-  .word-card {
-    flex-basis: 60%;
-  }
-}
-
-@media screen and (min-width: 640px) {
-  .word-card {
-    flex-basis: 60%;
-  }
-}
-
-
-@media screen and (min-width: 720px) {
-  .word-card, #game-progress {
-    margin: 20px;
-    flex-basis: auto;
-  }
-}
-
-.word-card.name {
-  background-color: #6C1115;
-  //background-color: #FC5185
-}
-
-.word-card.verb {
-  background-color: #364F6B;
-}
-
-.word-card.other {
-  background-color: #3F816B;
-  //background-color: #3FC1C9
-}
-
-.word-param {
-  line-height: 1.5em;
-}
-
-.word-param .content {
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-.word-key {
-  font-weight: 600;
-}
-
-.word-actions, .word-keys {
-  padding: 1em;
-}
-
-.word-keys {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  flex-grow: 1;
-  align-items: flex-start;
-  text-align: left;
-}
-
-.word-actions {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-}
-
-.word-actions button {
-  width: auto;
-  padding: 0.5em;
-  background-color: black;
-  background-color: #60210e;
-  text-align: center;
-}
 
 select {
     display: inline;
@@ -185,14 +104,6 @@ select {
 select:focus {
   border: 2px solid #378573;
   color: #378573;
-}
-
-.word-param-input {
-  margin-bottom: 1em;
-}
-
-.word-param-input:last-of-type {
-  margin-bottom: 2em;
 }
 
 button {
