@@ -50,7 +50,7 @@ export default class NewWordComponent extends React.Component {
     event.preventDefault();
     const wordData = this.state.formsInput[this.state.selectedWordType];
     WordsSvc.add(wordData).then((word) => {
-      console.info('word', word._id, 'added');
+      console.info('word', word.title, 'added');
       this.props.onWordAddedFn(word);
     });
     this.updateWordObj(

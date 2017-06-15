@@ -39,12 +39,12 @@ const config = {
 
     devServer: {
         contentBase: PATHS.build,
-        // historyApiFallback: true,
+        historyApiFallback: true,
         hot: true,
         inline: true,
         open: true,
         port: 7070,
-        stats: 'errors-only', // 'minimal',
+        stats: 'errors-only' // 'minimal',
         // stats : {
         //     exclude: ['node_modules']
         // }

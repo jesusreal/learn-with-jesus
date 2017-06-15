@@ -60,7 +60,7 @@
 }
 
 .game .word-card {
-  flex-basis: 0;
+  flex-basis: auto;
 }
 
 .word-card {

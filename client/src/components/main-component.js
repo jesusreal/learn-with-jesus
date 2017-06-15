@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+
 import WordsSvc from '../words-service';
 import {WORDS_LISTS_METADATA} from './../constants';
 import GameComponent from './game/game-component';
@@ -6,10 +12,10 @@ import NewWordComponent from './new-word/new-word-component';
 import WordCardComponent from './word-card/word-card-component'
 
 
+
 export default class MainComponent extends React.Component {
   constructor() {
     super();
-
     this.state = {
       words: [],
       allWords: [],
@@ -74,11 +80,14 @@ export default class MainComponent extends React.Component {
 
 
   render() {
-    return (
+
+    const game = () =>
+      <div id="game" className="block">
+        <GameComponent words={this.state.allWords}/>
+      </div>
+
+    const wordsList = () =>
       <div>
-        <div id="game" className="block">
-          <GameComponent words={this.state.allWords}/>
-        </div>
         <div id="words-groups" className="block">
           {
             WORDS_LISTS_METADATA.map((btn, index) =>
@@ -91,8 +100,28 @@ export default class MainComponent extends React.Component {
               <WordCardComponent key={index} word={word} onWordRemovedFn={this.onWordRemoved}/>
           )}
         </div>
-        <NewWordComponent onWordAddedFn={this.onWordAdded}/>
       </div>
+
+    const newWord = () => <NewWordComponent onWordAddedFn={this.onWordAdded}/>
+
+    return (
+      <Router>
+        <div>
+          <div className="nav">
+            <Link to="/">Home</Link>
+            <Link to="/wordsList">Words List</Link>
+            <Link to="/newWord">Add word</Link>
+          </div>
+
+          <div id="main">
+            <Route exact path="/" words={this.state.allWords} component={game}/>
+            <Route path="/wordsList" component={wordsList} />
+            <Route path="/newWord" component={newWord} />
+          </div>
+        </div>
+      </Router>
     );
   }
+
+
 }

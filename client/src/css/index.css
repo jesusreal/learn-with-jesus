@@ -1,9 +1,26 @@
 body {
-  margin: 0 auto;
-  max-width: 720px;
   text-align: center;
   width: 100%;
   background-color: #C5C5C5
+}
+
+a,
+a:link,
+button:focus,
+a:hover,
+a:active {
+  color: #C5C5C5;
+  text-decoration: none;
+}
+
+a:focus {
+  color: white;
+  font-weight: bold;
+}
+
+#main {
+  margin: 0 auto;
+  max-width: 720px;
 }
 
 .block {
@@ -25,10 +42,9 @@ input {
   background-color: #C5C5C5;
 }
 
-#words-groups {
-  // position: relative;
-  // background-color: white;
-  padding: 2em 0;
+.block#words-groups {
+  position: relative;
+  padding: 2em 0 0;
 }
 
 #words-list {
@@ -56,7 +72,11 @@ input {
 }
 
 #game-selection input {
-  width: 10em;
+  display: inline-block;
+  width: 5em;
+  padding: 12px 20px;
+  margin: 0 1em;
+
 }
 
 #game-progress {
@@ -107,9 +127,8 @@ select:focus {
 }
 
 button {
-  display: block;
   width: 10em;
-  margin: 1em auto;
+  margin: 1em;
   padding: 1em 2em;
   color: #E5E5E5;
   background-color: #378573;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "backend": "node server/index.js",
-    "db": "mongod --dbpath ./server/db/",    
+    "db": "mongod --dbpath ./server/db/",
     "dev": "webpack-dev-server",
     "env": "env",
     "lint": "eslint --format table --color client/src/ server; exit 0",
@@ -59,6 +59,8 @@
     "normalize.css": "^5.0.0",
     "popsicle": "^9.0.0",
     "react": "^15.4.x",
-    "react-dom": "^15.0.x"
+    "react-dom": "^15.0.x",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1"
   }
 }

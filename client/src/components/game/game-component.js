@@ -64,10 +64,11 @@ export default class GameComponent extends React.Component {
     return (
       <div>
         <div id="game-selection" className={'block ' + ((this.state.playing) ? 'hide' : '')}>
-          <input type="text" required name="totalWords" value={this.state.totalWords} onChange={this.updateField} autoFocus="autofocus"/>
           <button type="button" id="start-game" onClick={this.startGame}>
             Play
           </button>
+          <input type="text" required name="totalWords" value={this.state.totalWords} onChange={this.updateField} autoFocus="autofocus"/>
+          <span>Words</span>
         </div>
 
         <div id="words-list" className={'block game ' + ((this.state.playing) ? '' : 'hide')}>
