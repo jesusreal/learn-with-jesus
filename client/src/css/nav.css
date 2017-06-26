@@ -3,24 +3,9 @@
     height: 50px;
 }
 
-.nav .separator::before {
-    content: '|';
-    margin: 0 1em;
-}
-
 .nav a {
-    margin: 0 2em;
+    margin: 0 1em;
     line-height: 50px;
+    padding: 0 1em;
+    display: inline-block;
 }
-
-/*.nav button {
-  display: block;
-  width: 10em;
-  margin: 2em auto;
-  padding: 1em 2em;
-  color: #E5E5E5;
-  background-color: black;
-  border-radius: 5px;
-  border: none;
-  display: inline-block;
-}*/

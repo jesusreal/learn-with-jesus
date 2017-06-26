@@ -6,6 +6,9 @@ export default class WordCardComponent extends React.Component {
   constructor(props) {
     super(props);
     this.deleteWord = this.deleteWord.bind(this);
+    // this.updateWord = this.updateWord.bind(this);
+    this.moveWordToNextList = this.moveWordToNextList.bind(this);
+    this.moveWordToPreviousList = this.moveWordToPreviousList.bind(this);
     this.getRowsToDisplay = this.getRowsToDisplay.bind(this);
     this.state = {
       wordToShow: {}
@@ -21,6 +24,29 @@ export default class WordCardComponent extends React.Component {
         this.props.onWordRemovedFn(wordRemoved._id);
       });
     }
+  }
+
+  // updateWord() {
+  //   // New component, as content type (read to write) and buttons change?
+  //   // Then, parent component should decide which component to render
+  //   let word = this.props.word;
+  //   WordsSvc.update(word._id).then((wordUpdated) => {
+  //     console.info('word', wordUpdated._id, 'updated');
+  //   });
+  // }
+
+  moveWordToNextList() {
+    let payload = {'_id': this.props.word._id, 'step': this.props.word.step + 1};
+    WordsSvc.update(payload).then((wordUpdated) => {
+      console.info('word', wordUpdated._id, 'moved to', payload.step, 'list');
+    });    
+  }
+
+  moveWordToPreviousList() {
+    let payload = { '_id': this.props.word._id, 'step': this.props.word.step - 1 };
+    WordsSvc.update(payload).then((wordUpdated) => {
+      console.info('word', wordUpdated._id, 'moved to', payload.step, 'list');
+    });    
   }
 
   getRowsToDisplay() {
@@ -54,11 +80,6 @@ export default class WordCardComponent extends React.Component {
     return rows.filter((r) => r);
   }
  
-  // edit() {
-  //   // New component, as content type (read to write) and buttons change?
-  //   // Then, parent component should decide which component to render
-  // }
-
   render() {
     return (
       <div className={'word-card ' + this.props.word.type}>
@@ -73,14 +94,14 @@ export default class WordCardComponent extends React.Component {
         </div>
         <div className="word-actions">
           <button type="button" className="delete-word-btn" onClick={this.deleteWord}>X</button>
+          <button type="button" className="to-next-list-btn" onClick={this.moveWordToNextList}>Next</button>
+          <button type="button" className="to-prev-list-btn" onClick={this.moveWordToPreviousList}>Prev</button>
         </div>
       </div>
     );
   }
 }
-// <button type="button" className="edit-word-btn disabled" onClick={this.edit}>Edit</button>
-// <button disabled type="button" className="to-next-list-btn disabled" onClick={this.moveWord}>Next</button>
-// <button disabled type="button" className="to-prev-list-btn disabled" onClick={this.moveWord}>Prev</button>
+//  <button type="button" className="update-word-btn" onClick={this.updateWord}>Edit</button>
 
 WordCardComponent.propTypes = {
   onWordRemovedFn: React.PropTypes.func,

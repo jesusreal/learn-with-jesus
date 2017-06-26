@@ -17,7 +17,6 @@ const app = express();
 
 const mapWordForFrontend = (word) => {
   delete word.userId;
-  delete word.step;
   return Object.assign({}, word, {title: word.word || word.infinitive || word.singular});
 }
 
@@ -39,7 +38,6 @@ const doDbBackup = () => {
   });
 }
 
-
 app.listen(SERVER_PORT, SERVER_URL);
 
 
@@ -58,12 +56,35 @@ app.get('/words', (request, response) => {
     db.collection('words')
       .find(
         searchObj,
-        {userId: false, step: false}
+        {userId: false}
       )
       .toArray((err, result) => {
         db.close();
         response.end(JSON.stringify(result.map(mapWordForFrontend)));
       });
+  });
+});
+
+app.put('/word', (request, response) => {
+  request.on('data', (data) => {
+    const wordObj = JSON.parse(data);
+    const updateObj = Object.assign({}, wordObj);
+    delete updateObj._id;
+    request.on('end', () => {
+      response.writeHead(200, HEADER_OPTIONS);
+      MongoClient.connect(DB_URL, (err, db) => {
+        db.collection('words')
+          .update(
+            { '_id': ObjectID(wordObj._id) },
+            { $set: updateObj }
+          )
+          .then(() => {
+            db.close();
+            response.end(JSON.stringify(wordObj));
+            doDbBackup();
+          })
+      });
+    });
   });
 });
 

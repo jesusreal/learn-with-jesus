@@ -56,7 +56,6 @@ export default class MainComponent extends React.Component {
         .split('-')[0]
         .substr(-1)
     );
-
     new Promise((resolve) => {
       if(!this.state.listVisible || this.state.lastListDisplayed !== wordsList) {
         WordsSvc.getAll(wordsList)

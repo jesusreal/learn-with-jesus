@@ -21,5 +21,11 @@ export default {
     return popsicle({method: 'DELETE', url, body})
       .then((response) => JSON.parse(response.body))
       .catch((error) => { catchFn(error, url, 'DELETE') });
+  },
+
+  update(url, body) {
+    return popsicle({method: 'PUT', url, body})
+      .then((response) => JSON.parse(response.body))
+      .catch((error) => { catchFn(error, url, 'PUT') });
   }
 }
