@@ -1,9 +1,9 @@
 var webpack = require('webpack');
-var pkg = require('./package.json');
+// var pkg = require('./package.json');
 const path = require('path');
-
-const validate = require('webpack-validator');
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'src'),
@@ -11,65 +11,117 @@ const PATHS = {
   build: path.join(__dirname, 'dist')
 };
 
+module.exports = {
+  entry: {
+    // vendors: Object.keys(pkg.dependencies),
+    app: PATHS.app + '/index.js'
+  },
 
-const config = {
-    entry: {
-        app: PATHS.app,
-        vendors: Object.keys(pkg.dependencies)
-    },
+  resolve: {
+    mainFields: ['browser', 'module', 'main'],
+    extensions: ['.js'],
+    // modules: ['./src', './node_modules'],
+  },
 
-    output: {
-        path: PATHS.build,
-        filename: '[name].js'
-    },
+  output: {
+    path: PATHS.build,
+    filename: '[name].js'
+  },
 
-    plugins: [
-        // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.bundle.js'),
-        new webpack.HotModuleReplacementPlugin({
-          multiStep: true
-        })
-        // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js', Infinity),
-        // new webpack.optimize.DedupePlugin(),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //       warnings: false
-        //     }
-        // })
-    ],
+  plugins: [
+    new CopyWebpackPlugin(
+      [
+        {
+          context: 'src',
+          to: '',
+          from: {
+            glob: 'img/**/*',
+            dot: true
+          }
+        }
+      ],
+      {
+        ignore: ['.gitkeep', '**/.DS_Store', '**/Thumbs.db'],
+        debug: 'warning'
+      }
+    ),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: './index.html',
+      // hash: false,
+      // inject: true,
+      // compile: true,
+      // favicon: false,
+      // minify: false,
+      // cache: true,
+      // showErrors: true,
+      // chunks: 'all',
+      // excludeChunks: [],
+      // xhtml: true
+    }),
+    new CleanWebpackPlugin(['dist'], {
+      verbose: true
+    }),
+    // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.bundle.js'),
+    new webpack.HotModuleReplacementPlugin({
+      //   multiStep: true
+    })
+    // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js', Infinity),
+    // new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.UglifyJsPlugin({
+    //     compress: {
+    //       warnings: false
+    //     }
+    // })
+  ],
 
-    devServer: {
-        contentBase: PATHS.build,
-        historyApiFallback: true,
-        hot: true,
-        inline: true,
-        open: true,
-        port: 7070,
-        stats: 'errors-only' // 'minimal',
-        // stats : {
-        //     exclude: ['node_modules']
-        // }
-    },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
 
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loader: "babel",
-                query: {presets:['react', 'es2015']},
-                include: [PATHS.app]
-            },
-            {test: /\.json$/, loader: "json-loader"},
-            {
-              test: /\.css/,
-              include: [PATHS.app, PATHS.nodeModules + '/normalize.css'],
-              loader: 'style!css'
-            }
-        ]
-    },
+  devServer: {
+    // contentBase: PATHS.build,
+    // historyApiFallback: true,
+    // hot: true,
+    // inline: true,
+    open: true,
+    port: 7070,
+    // stats: 'errors-only' // 'minimal',
+    // stats : {
+    //     exclude: ['node_modules']
+    // }
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.html$/,
+        loader: 'raw-loader'
+      },
+      {
+        test: /\.js$/,
+        use: {
+          loader: "babel-loader",
+          query: { presets: ['react', 'es2015'] }
+        },
+        exclude: [PATHS.nodeModules]
+      },
+      // {test: /\.json$/, loader: "json-loader"},
+      {
+        test: /\.css/,
+        include: [PATHS.app, PATHS.nodeModules + '/normalize.css'],
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.(jpg|png|webp|gif|otf|ttf|woff|woff2|ani)$/,
+        loader: 'url-loader',
+        options: {
+          name: '[name].[hash:20].[ext]',
+          limit: 10000
+        }
+      }
+    ]
+  },
 };
-
-module.exports = config;
-
-
-module.exports = validate(config);
-
