@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "backend": "node server/index.js",
-    "db": "mongod --dbpath ./server/db/",
+    "backend": "node index.js",
+    "db": "mongod --dbpath ./db/",
     "dev": "webpack-dev-server",
     "env": "env",
-    "start": "rm -rf client/dist && mkdir -p client/dist && concurrently \"'npm run db'\" \"npm run backend\"",
+    "start": "rm -rf dist && mkdir -p dist && concurrently \"'npm run db'\" \"npm run backend\""
   },
   "author": "Jesús Real Serrano <jesus.real@outlook.com>",
   "license": "MIT",
@@ -17,6 +17,5 @@
     "mongodb": "^2.2.16",
     "express": "^4.14.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
