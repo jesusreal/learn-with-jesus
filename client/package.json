@@ -19,7 +19,6 @@
   },
   "author": "Jesús Real Serrano <jesus.real@outlook.com>",
   "license": "MIT",
-  "homepage": "http://learn-with-jesus.com/",
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-eslint": "^6.0.0",
@@ -39,8 +38,6 @@
     "eslint": "^3.3.0",
     "eslint-config-eslint": "^3.0.0",
     "eslint-plugin-react": "^5.1.1",
-    "hamjest": "^2.13.0",
-    "lite-server": "^2.2.2",
     "mocha": "^2.4.5",
     "nightwatch": "^0.x",
     "selenium-server-standalone-jar": "3.0.1",
@@ -48,8 +45,6 @@
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.16.2",
     "webpack-validator": "^2.2.9",
-    "mongodb": "^2.2.16",
-    "express": "^4.14.0"
   },
   "dependencies": {
     "jquery": "^3.0.0",
