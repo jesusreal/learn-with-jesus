@@ -1,4 +1,4 @@
-from node:7.3.0
+FROM nginx:stable-alpine
 
 RUN useradd --user-group --create-home --shell /bin/false nodejs
 
@@ -11,4 +11,4 @@ USER nodejs
 WORKDIR $HOME/app
 RUN npm install
 
-RUN npm run start-view
+RUN npm run 
