@@ -6,9 +6,9 @@ const validate = require('webpack-validator');
 
 
 const PATHS = {
-  app: path.join(__dirname, 'client/src'),
+  app: path.join(__dirname, 'src'),
   nodeModules: path.join(__dirname, 'node_modules'),
-  build: path.join(__dirname, 'client/dist')
+  build: path.join(__dirname, 'dist')
 };
 
 
