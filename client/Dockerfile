@@ -1,14 +1,11 @@
 FROM nginx:stable-alpine
 
-RUN useradd --user-group --create-home --shell /bin/false nodejs
+# Add build
+COPY ./dist /usr/share/nginx/html
 
-ENV HOME=/home/nodejs
-ENV NODE_ENV=production
+# RUN mkdir -p /usr/share/nginx/cache
+# EXPOSE 80
+# EXPOSE 5000
 
-COPY package.json npm-shrinkwrap.json $HOME/app/
-RUN chown -R nodejs:nodejs $HOME/*
-USER nodejs
-WORKDIR $HOME/app
-RUN npm install
+WORKDIR /usr/share/nginx/public
 
-RUN npm run 
