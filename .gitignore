@@ -4,4 +4,5 @@ node_modules
 *.log
 *reports*
 server/test*
-server/db/*
+data/mongodb/db/*
+data-dev/mongodb/db/*

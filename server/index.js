@@ -3,9 +3,11 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const fs = require('fs');
 
-const DB_URL = 'mongodb://127.0.0.1:27017/data';
-const SERVER_PORT = 3333;
-const SERVER_URL = '127.0.0.1';
+const DB_URL = (process.env.startType === 'dev') ? 
+  'mongodb://127.0.0.1:27017/data' :
+  'mongodb://mongo/learn-with-jesus-backend';
+const SERVER_PORT = process.env.PORT || 3333;
+const SERVER_URL = '0.0.0.0';
 const HEADER_OPTIONS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'accept, accept-language, content-type',
@@ -38,7 +40,9 @@ const doDbBackup = () => {
   });
 }
 
-app.listen(SERVER_PORT, SERVER_URL);
+app.listen(SERVER_PORT, SERVER_URL, () => {
+  console.info(`server running on port ${SERVER_PORT}`);
+});
 
 
 app.options('/word', (request, response) => {
@@ -59,6 +63,7 @@ app.get('/words', (request, response) => {
         {userId: false}
       )
       .toArray((err, result) => {
+        // console.info('err, result: ', err, result);
         db.close();
         response.end(JSON.stringify(result.map(mapWordForFrontend)));
       });
@@ -126,4 +131,3 @@ app.delete('/word', (request, response) => {
 });
 
 
-console.info(`server running on port ${SERVER_PORT}`);

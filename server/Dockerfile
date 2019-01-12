@@ -1,14 +1,21 @@
-from node:7.3.0
+FROM mhart/alpine-node:10.15.0
 
-RUN useradd --user-group --create-home --shell /bin/false nodejs
+# RUN useradd --user-group --create-home --shell /bin/false nodejs
 
-ENV HOME=/home/nodejs
-ENV NODE_ENV=production
+# ENV HOME=/home/nodejs
+# ENV NODE_ENV=production
 
-COPY package.json npm-shrinkwrap.json $HOME/app/
-RUN chown -R nodejs:nodejs $HOME/*
-USER nodejs
-WORKDIR $HOME/app
+# Create app directory
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+# RUN chown -R nodejs:nodejs $HOME/*
+# USER nodejs
+
 RUN npm install
+# RUN npm run db  
 
-RUN npm run start-view
+COPY index.js .
+
+EXPOSE 3333
+CMD [ "npm", "start" ]

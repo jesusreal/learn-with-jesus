@@ -1,9 +1,22 @@
-app:
-  mem_limit: 300m
-  memswap_limit: 1g
-  build: .
-  ports:
-    - '3333:3333'
-  volumes:
-    - .:/home/nodejs/app
-    - /home/nodejs/app/node_modules
+version: "2"
+services:
+  frontend:
+    build: client
+    ports:
+      - "80:80"
+    links:
+      - backend
+  backend:
+    build: server
+    restart: always
+    ports:
+      - "3333:3333"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo:2.4
+    volumes:
+        - ./data/mongodb/db:/data/db
+    ports:
+      - "27017:27017"
