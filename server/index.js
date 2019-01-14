@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const DB_URL = (process.env.startType === 'dev') ? 
   'mongodb://127.0.0.1:27017/data' :
-  'mongodb://mongo/learn-with-jesus-backend';
+  'mongodb://mongo:27017/data';
 const SERVER_PORT = process.env.PORT || 3333;
 const SERVER_URL = '0.0.0.0';
 const HEADER_OPTIONS = {

@@ -14,8 +14,7 @@ services:
     links:
       - mongo
   mongo:
-    container_name: mongo
-    image: mongo:2.4
+    image: mongo:3.4
     volumes:
         - ./data/mongodb/db:/data/db
     ports:
