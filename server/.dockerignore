@@ -1,0 +1,18 @@
+#https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
+# Git
+.gitignore
+
+# Build step outputs
+build
+
+# Docker configuration
+Dockerfile
+.dockerignore
+Makefile
+
+# NPM dependencies
+node_modules
+
+# Other
+.editorconfig
