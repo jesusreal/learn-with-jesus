@@ -2,10 +2,7 @@ const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const fs = require('fs');
-
-const DB_URL = (process.env.startType === 'dev') ? 
-  'mongodb://127.0.0.1:27017/data' :
-  'mongodb://mongo:27017/data';
+const configDB = require('./config/database.js');
 const SERVER_PORT = process.env.PORT || 3333;
 const SERVER_URL = '0.0.0.0';
 const HEADER_OPTIONS = {
@@ -23,22 +20,22 @@ const mapWordForFrontend = (word) => {
 }
 
 
-const doDbBackup = () => {
-  MongoClient.connect(DB_URL, (err, db) => {
-    db.collection('words')
-      .find({})
-      .toArray((err, result) => {
-        db.close();
-        fs.writeFile(
-          './server/db-backup/words.json',
-          JSON.stringify(result),
-          (err) => {
-            if(err) console.error('ERROR: DB backup failed');
-          }
-        );
-      });
-  });
-}
+// const doDbBackup = () => {
+//   MongoClient.connect(configDB.url, (err, db) => {
+//     db.collection('words')
+//       .find({})
+//       .toArray((err, result) => {
+//         db.close();
+//         fs.writeFile(
+//           './server/db-backup/words.json',
+//           JSON.stringify(result),
+//           (err) => {
+//             if(err) console.error('ERROR: DB backup failed');
+//           }
+//         );
+//       });
+//   });
+// }
 
 app.listen(SERVER_PORT, SERVER_URL, () => {
   console.info(`server running on port ${SERVER_PORT}`);
@@ -53,7 +50,7 @@ app.options('/word', (request, response) => {
 
 app.get('/words', (request, response) => {
   response.writeHead(200, HEADER_OPTIONS);
-  MongoClient.connect(DB_URL, (err, db) => {
+  MongoClient.connect(configDB.url, (err, db) => {
     const searchObj = request.query.step ?
       {userId: USER_ID, step: Number(request.query.step)} :
       {userId: USER_ID}
@@ -77,7 +74,7 @@ app.put('/word', (request, response) => {
     delete updateObj._id;
     request.on('end', () => {
       response.writeHead(200, HEADER_OPTIONS);
-      MongoClient.connect(DB_URL, (err, db) => {
+      MongoClient.connect(configDB.url, (err, db) => {
         db.collection('words')
           .update(
             { '_id': ObjectID(wordObj._id) },
@@ -86,7 +83,7 @@ app.put('/word', (request, response) => {
           .then(() => {
             db.close();
             response.end(JSON.stringify(wordObj));
-            doDbBackup();
+            // doDbBackup();
           })
       });
     });
@@ -98,7 +95,7 @@ app.post('/word', (request, response) => {
     const wordObj = JSON.parse(data);
     request.on('end', () => {
       response.writeHead(200, HEADER_OPTIONS);
-      MongoClient.connect(DB_URL, (err, db) => {
+      MongoClient.connect(configDB.url, (err, db) => {
         const newWord = Object.assign(
           {userId: USER_ID, step: 0},
           wordObj
@@ -106,7 +103,7 @@ app.post('/word', (request, response) => {
         db.collection('words').insert(newWord, () => {
           db.close();
           response.end(JSON.stringify(mapWordForFrontend(newWord)));
-          doDbBackup();
+          // doDbBackup();
         });
       });
     });
@@ -119,11 +116,11 @@ app.delete('/word', (request, response) => {
     const wordId = JSON.parse(data).wordId;
     request.on('end', () => {
       response.writeHead(200, HEADER_OPTIONS);
-      MongoClient.connect(DB_URL, (err, db) => {
+      MongoClient.connect(configDB.url, (err, db) => {
         db.collection('words').remove({'_id': ObjectID(wordId)}, () => {
           db.close();
           response.end(JSON.stringify({'_id': wordId}));
-          doDbBackup();
+          // doDbBackup();
         });
       });
     });

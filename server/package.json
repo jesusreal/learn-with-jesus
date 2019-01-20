@@ -1,12 +1,12 @@
 {
   "name": "learn-with-jesus-backend",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "db": "mongod --dbpath ../data-dev/mongodb/db/",
-    "start-dev": "startType=dev concurrently \"'npm run db'\" \"npm start\""
+    "start-prod": "node index.js",
+    "db": "mongod --dbpath ../data-dev/",
+    "start": "concurrently \"'npm run db'\" \"npm start\""
   },
   "author": "Jesús Real Serrano <jesus.real@outlook.com>",
   "license": "MIT",
