@@ -14,8 +14,8 @@ MONGO_DB_CONTAINER=`docker ps -aqf name=learn-with-jesus_mongo_1`
 
 echo "Restoring from backup $BACKUP_DIR/$BACKUP_FILENAME"
 
-# DELETE EXISTENT DB AND COPY BACK  UP
-if [[ $BACKUP_TYPE == "all" ]]; then
+# DELETE EXISTENT DB AND COPY BACKUP
+if [ "$BACKUP_TYPE" = "all" ]; then
   BACKUP_DIR=$(pwd)/../data/backup-all
   docker run --rm \
     --volumes-from ${MONGO_DB_CONTAINER} \

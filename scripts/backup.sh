@@ -11,7 +11,7 @@ BACKUP_FILENAME_LATEST=backup-latest.tar
 
 echo "Creating backup $BACKUP_FILENAME $BACKUP_TYPE"
 
-if [[ $BACKUP_TYPE == "all" ]]; then
+if [ "$BACKUP_TYPE" = "all" ]; then
   BACKUP_DIR=$(pwd)/../data/backup-all
   docker run --rm \
     --volumes-from ${MONGO_DB_CONTAINER} \
