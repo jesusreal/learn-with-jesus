@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lwj-be-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lwj-be
+  template:
+    metadata:
+      labels:
+        app: lwj-be
+    spec:
+      containers:
+      - name: lwj-be-container
+        image: lwj-be:v1
+        ports:
+        - containerPort: 3333
+          # name: http
+---
+apiVersion: v1      
+kind: Service       
+metadata:           
+  name: lwj-be-service
+spec:               
+  selector:         
+    app: lwj-be      
+  ports:            
+  - protocol: TCP   
+    port: 3333        
+  # type: ClusterIP

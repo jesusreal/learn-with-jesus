@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-prod": "node src/index.js",
-    "db": "mongod --dbpath ../data/data-dev/",
-    "start": "concurrently \"npm run db\" \"npm run start-prod\""
+    "start": "concurrently \"npm run db\" \"node src/index.js\"",
+    "start-prod": "node index.js",
+    "db": "mongod --dbpath ../data/data-dev/"
   },
   "author": "Jesús Real Serrano <jesus.real@outlook.com>",
   "license": "MIT",
