@@ -1,9 +1,11 @@
 dist
-data
+data/backupt*
 node_modules
 *npm-debug.log*
 *.log
 *reports*
 server/test*
-data/mongodb/db/*
-data-dev/mongodb/db/*
+data/backup*
+data/db/
+data/json/
+data/data-dev

@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lwj-db-service
+spec:
+  selector:
+    app: lwj-db
+  ports:
+  - protocol: TCP
+    port: 27017
+  type: ClusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lwj-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lwj-db
+  template:
+    metadata:
+      labels:
+        app: lwj-db
+    spec:
+      containers:
+      - name: mongodb
+        image: lwj-db:v1
+        ports:
+        - containerPort: 27017
+      volumes:
+      - name: mongo-persistent-storage
+        persistentVolumeClaim:
+          claimName: mongo-pv-claim
