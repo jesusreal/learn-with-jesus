@@ -21,18 +21,20 @@ function start {
   fi
 
   eval "$(minikube docker-env)"
+  kubectl apply -f ${LWJ_PATH}/namespace-dev.yml
+  kubectl config use-context $NAMESPACE
+
   docker run -d -p 5000:5000 --restart=always --name registry registry:2
   docker build -t lwj-fe:v1 $LWJ_FE_PATH -q
   docker build -t lwj-be:v1 $LWJ_BE_PATH -q
   docker build -t lwj-db:v1 $LWJ_DB_PATH -q
 
-  kubectl apply -f ${LWJ_PATH}/namespace-dev.yml
-  kubectl config use-context $NAMESPACE
-
   kubectl apply -f ${LWJ_FE_PATH}/deployment-fe.yml
-  kubectl apply -f ${LWJ_FE_PATH}/ingress-fe.yml
   kubectl apply -f ${LWJ_BE_PATH}/deployment-be.yml
   kubectl apply -f ${LWJ_DB_PATH}/deployment-db.yml
+  
+  kubectl apply -f ${LWJ_FE_PATH}/ingress-fe.yml
+  kubectl apply -f ${LWJ_BE_PATH}/ingress-be.yml
 
   # Todo: Add this automatically to /etc/hosts file
   # 192.168.64.129 lwj.com
@@ -43,11 +45,11 @@ function stop {
   kubectl delete namespace "$NAMESPACE"
 }
 
-function restart {
-  local BUILD_APPS=$1
-  stop
-  start "$BUILD_APPS"
-}
+# function restart {
+#   local BUILD_APPS=$1
+#   stop
+#   start "$BUILD_APPS"
+# }
 
 # $ eval "$(docker-machine env -u)"
 
@@ -63,8 +65,8 @@ function main {
     start "$BUILD_APPS"
   elif [ "$ACTION" = "stop" ]; then
     stop
-  elif [ "$ACTION" = "restart" ]; then
-    restart "$BUILD_APPS"
+  # elif [ "$ACTION" = "restart" ]; then
+  #   restart "$BUILD_APPS"
   fi
 
 }
