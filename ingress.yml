@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: lwj-ingress-fe
+  name: lwj-ingress
 spec:
   rules:
   - host: lwj.com
@@ -18,3 +18,10 @@ spec:
         backend:
           serviceName: lwj-fe-v2-service
           servicePort: 80
+  - host: api.lwj.com
+    http:
+      paths:
+      - path:
+        backend:
+          serviceName: lwj-be-service
+          servicePort: 3333

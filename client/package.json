@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack --mode development",
-    "build-prod": "webpack --mode production",
+    "build-prod": "webpack --mode production --display=minimal",
     "env": "env",
     "lint": "eslint --format table --color src/ server; exit 0",
     "start": "webpack-dev-server",

@@ -10,16 +10,17 @@ spec:
     port: 27017
   type: ClusterIP
 ---
-apiVersion: v1
 kind: PersistentVolumeClaim
+apiVersion: v1
 metadata:
-  name: mongo-pv-claim
+  name: db-pv-claim
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
+      storage: 2Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -40,7 +41,10 @@ spec:
         image: lwj-db:v1
         ports:
         - containerPort: 27017
+        volumeMounts:
+        - name: vol-mongo
+          mountPath: /data/db
       volumes:
-      - name: mongo-persistent-storage
+      - name: vol-mongo
         persistentVolumeClaim:
-          claimName: mongo-pv-claim
+          claimName: db-pv-claim  

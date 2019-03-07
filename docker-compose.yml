@@ -1,19 +1,19 @@
 version: "2"
 services:
-  frontend:
+  lwj-fe-service:
     build: client
     ports:
       - "80:80"
     links:
       - backend
-  backend:
+  lwj-be-service:
     build: server
     restart: always
     ports:
       - "3333:3333"
     links:
       - mongo
-  mongo:
+  lwj-db-service:
     image: mongo:3.4
     volumes:
     - data-volume:/data/db

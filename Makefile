@@ -24,3 +24,5 @@ cluster-stop:
 cluster-delete: 
 	minikube delete
 
+add-hosts:
+	${MINIKUBE_SCRIPT_PATH} add-hosts

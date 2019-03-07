@@ -1,6 +1,7 @@
-import React from 'react';
-
-export const SERVER_URL = 'http://127.0.0.1:3333';
+export const SERVER_URL = window.location.host.includes('lwj') ?
+  // 'http://192.168.64.134:30992'; // Works without ingress for BE and BE service NodePort
+  'http://api.lwj.com' : // Works with ingress for BE and BE service ClusterIP
+  'http://127.0.0.1:3333'
 export const WORD_FIELDS_NOT_TO_SHOW = ['_id', 'type', 'title'];
 export const WORD_TYPES = {
   name: 'name',
